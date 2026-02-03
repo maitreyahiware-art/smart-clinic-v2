@@ -246,7 +246,7 @@ export default function PatientsRegistryPage() {
                                                 e.currentTarget.style.transform = 'translateY(0)';
                                             }}
                                         >
-                                            View Chart
+                                            Profile
                                         </Link>
                                     </div>
                                 </div>

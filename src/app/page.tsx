@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/Layout/DashboardLayout';
 import { patients } from '@/data/patients';
-import { Calendar, Clock, Activity, ChevronLeft, ChevronRight, IndianRupee, CheckCircle, XCircle, CalendarClock, User, MoreHorizontal, X } from 'lucide-react';
+import { Calendar, Clock, Activity, ChevronLeft, ChevronRight, IndianRupee, CheckCircle, XCircle, CalendarClock, User, MoreHorizontal, X, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
 // --- Type Definitions ---
@@ -425,24 +425,52 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* View Toggles */}
-            <div style={{ background: '#E5E7EB', padding: '4px', borderRadius: '8px', display: 'flex', gap: '2px' }}>
-              {['Day', 'Week', 'Month'].map((v) => (
-                <button
-                  key={v}
-                  onClick={() => setView(v as ViewType)}
-                  style={{
-                    padding: '8px 16px', borderRadius: '6px',
-                    background: view === v ? 'white' : 'transparent',
-                    color: view === v ? 'var(--color-brand-primary)' : '#666',
-                    fontWeight: view === v ? 600 : 400,
-                    boxShadow: view === v ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-                    transition: 'all 0.2s'
-                  }}
-                >
-                  {v}
-                </button>
-              ))}
+            {/* View Toggles & Emergency Pivot */}
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <button
+                onClick={() => {
+                  const confirmPivot = window.confirm("🚨 EMERGENCY PIVOT ACTIVATED!\n\nThis will:\n1. Auto-reschedule all LOW/MID risk patients.\n2. Move all CRITICAL patients to immediate TELEREHAB sessions.\n\nProceed with notification broadcast?");
+                  if (confirmPivot) {
+                    setEvents(prev => prev.map(e => {
+                      if (e.dayOffset === 0 && e.status === 'Scheduled') {
+                        if (e.riskLevel === 'Critical') return { ...e, reason: '🚨 [TELEREHAB] ' + e.reason, status: 'Scheduled' };
+                        return { ...e, status: 'Rescheduled' };
+                      }
+                      return e;
+                    }));
+                    alert("Broadcast complete. 24 patients notified via WhatsApp/SMS.");
+                  }
+                }}
+                style={{
+                  padding: '12px 24px', borderRadius: '12px',
+                  background: 'linear-gradient(135deg, #EF4444 0%, #B91C1C 100%)',
+                  color: 'white', fontWeight: 900, fontSize: '0.9rem',
+                  border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px',
+                  boxShadow: '0 10px 15px -3px rgba(239, 68, 68, 0.4)',
+                  textTransform: 'uppercase', letterSpacing: '0.05em'
+                }}
+              >
+                <AlertCircle size={20} /> Emergency Pivot
+              </button>
+
+              <div style={{ background: '#E5E7EB', padding: '4px', borderRadius: '8px', display: 'flex', gap: '2px' }}>
+                {['Day', 'Week', 'Month'].map((v) => (
+                  <button
+                    key={v}
+                    onClick={() => setView(v as ViewType)}
+                    style={{
+                      padding: '8px 16px', borderRadius: '6px',
+                      background: view === v ? 'white' : 'transparent',
+                      color: view === v ? 'var(--color-brand-primary)' : '#666',
+                      fontWeight: view === v ? 600 : 400,
+                      boxShadow: view === v ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    {v}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
