@@ -1,0 +1,308 @@
+.contextLens {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--spacing-md);
+    background: white;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.lensSection {
+    padding: var(--spacing-sm);
+    border-right: 1px solid var(--color-border);
+}
+
+.lensSection:last-child {
+    border-right: none;
+}
+
+.lensHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.lensTitle {
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.lensList {
+    list-style: none;
+    font-size: 0.9rem;
+    color: var(--color-brand-secondary);
+}
+
+.lensList li {
+    margin-bottom: 4px;
+    padding-left: 4px;
+}
+
+.emptyState {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    font-size: 0.85rem;
+}
+
+/* SOAP Note */
+.soapContainer {
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+.soapHeader {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-bg-primary);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.soapTitle {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.soapBody {
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.soapSection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.soapLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--color-brand-primary);
+    font-size: 0.9rem;
+}
+
+.soapTextarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--color-brand-secondary);
+    background-color: #FAFAFA;
+    resize: vertical;
+}
+
+.soapTextarea:focus {
+    outline: none;
+    border-color: var(--color-brand-primary);
+    background: white;
+    box-shadow: 0 0 0 2px rgba(0, 182, 193, 0.1);
+}
+
+/* Disposition */
+.dispoContainer {
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-md);
+    height: fit-content;
+}
+
+.dispoTitle {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-brand-secondary);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--spacing-sm);
+}
+
+.sectionHeader {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.medSearch {
+    position: relative;
+    margin-bottom: var(--spacing-sm);
+}
+
+.medInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+}
+
+.medList {
+    list-style: none;
+    border: 1px solid var(--color-border);
+    border-top: none;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    background: white;
+    z-index: 10;
+    box-shadow: var(--shadow-md);
+}
+
+.medItem {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.medItem:hover {
+    background-color: var(--color-bg-primary);
+}
+
+.activeMed {
+    background-color: var(--color-bg-primary);
+}
+
+.orderList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: var(--spacing-md);
+}
+
+.orderItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-bg-primary);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+}
+
+.removeBtn {
+    color: var(--color-error);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.imagingGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.imageBtn {
+    padding: 8px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    background: white;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.imageBtn:hover {
+    border-color: var(--color-brand-primary);
+    color: var(--color-brand-primary);
+}
+
+.actionArea {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xl);
+}
+
+/* Action Registry */
+.actionRegistry {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    margin-top: var(--spacing-lg);
+}
+
+.registryTitle {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-brand-secondary);
+}
+
+.actionTabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: var(--spacing-md);
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.actionTab {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.actionTab:hover {
+    background: var(--color-brand-primary);
+    color: white;
+    border-color: var(--color-brand-primary);
+}
+
+.actionGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.actionCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 12px;
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all 0.2s;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-brand-secondary);
+}
+
+.actionCard:hover {
+    background: white;
+    border-color: var(--color-brand-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
