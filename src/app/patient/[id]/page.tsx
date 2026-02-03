@@ -40,7 +40,7 @@ export default function PatientPage(props: { params: Promise<{ id: string }> }) 
                         </div>
                         <div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#1E293B', margin: 0 }}>{patient.name}</h1>
+                                <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--color-brand-secondary)', margin: 0 }}>{patient.name}</h1>
                                 <span style={{
                                     padding: '4px 12px', borderRadius: '99px', fontSize: '11px', fontWeight: 800,
                                     background: patient.riskLevel === 'Critical' ? '#FEE2E2' : '#F0FDFA',
@@ -49,7 +49,7 @@ export default function PatientPage(props: { params: Promise<{ id: string }> }) 
                                     {patient.riskLevel.toUpperCase()} RISK
                                 </span>
                             </div>
-                            <div style={{ display: 'flex', gap: '20px', color: '#64748B', fontSize: '0.95rem', marginTop: '4px' }}>
+                            <div style={{ display: 'flex', gap: '20px', color: 'var(--color-text-secondary)', fontSize: '0.95rem', marginTop: '4px' }}>
                                 <span>{patient.gender}, {patient.age}y</span>
                                 <span>•</span>
                                 <span>ID: {patient.id.padStart(4, '0')}</span>
@@ -65,7 +65,7 @@ export default function PatientPage(props: { params: Promise<{ id: string }> }) 
                             style={{
                                 display: 'flex', alignItems: 'center', gap: '8px',
                                 padding: '10px 20px', borderRadius: '12px',
-                                background: 'white', color: '#00B6C1',
+                                background: 'var(--color-white)', color: '#00B6C1',
                                 border: '2px solid #00B6C1', fontWeight: 700,
                                 cursor: 'pointer', transition: 'all 0.2s'
                             }}
@@ -74,15 +74,15 @@ export default function PatientPage(props: { params: Promise<{ id: string }> }) 
                                 (e.currentTarget as any).style.color = 'white';
                             }}
                             onMouseOut={e => {
-                                (e.currentTarget as any).style.background = 'white';
+                                (e.currentTarget as any).style.background = 'var(--color-white)';
                                 (e.currentTarget as any).style.color = '#00B6C1';
                             }}
                         >
                             <Upload size={18} /> Upload Prescription
                         </button>
                         <div style={{ textAlign: 'right' }}>
-                            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94A3B8', textTransform: 'uppercase' }}>Current Primary Reason</div>
-                            <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#1E293B' }}>{patient.reasonForVisit.split(':')[0]}</div>
+                            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-text-secondary)', textTransform: 'uppercase' }}>Current Primary Reason</div>
+                            <div style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--color-brand-secondary)' }}>{patient.reasonForVisit.split(':')[0]}</div>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@ export default function PatientPage(props: { params: Promise<{ id: string }> }) 
                 <ContextLens patient={patient} />
 
                 {/* 📑 Tab Navigation - The "Un-Crowder" */}
-                <div style={{ display: 'flex', gap: '32px', borderBottom: '1px solid #E2E8F0', paddingBottom: '2px' }}>
+                <div style={{ display: 'flex', gap: '32px', borderBottom: '1px solid var(--color-border)', paddingBottom: '2px' }}>
                     {[
                         { id: 'consult', label: 'Clinical Note', icon: FileText },
                         { id: 'intelligence', label: 'AI & History', icon: Brain },
@@ -104,7 +104,7 @@ export default function PatientPage(props: { params: Promise<{ id: string }> }) 
                                 display: 'flex', alignItems: 'center', gap: '10px',
                                 padding: '12px 4px', border: 'none', background: 'transparent',
                                 borderBottom: activeTab === tab.id ? '2px solid #00B6C1' : '2px solid transparent',
-                                color: activeTab === tab.id ? '#00B6C1' : '#64748B',
+                                color: activeTab === tab.id ? '#00B6C1' : 'var(--color-text-secondary)',
                                 fontWeight: activeTab === tab.id ? 700 : 500,
                                 fontSize: '1rem', cursor: 'pointer', transition: 'all 0.2s'
                             }}
@@ -151,10 +151,10 @@ export default function PatientPage(props: { params: Promise<{ id: string }> }) 
                                 </div>
                             </div>
 
-                            <div style={{ background: 'white', borderRadius: '24px', padding: '32px', border: '1px solid #E2E8F0' }}>
+                            <div style={{ background: 'var(--color-white)', borderRadius: '24px', padding: '32px', border: '1px solid var(--color-border)' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
                                     <History size={24} color="#6366F1" />
-                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1E293B' }}>Clinical Journey</h3>
+                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-brand-secondary)' }}>Clinical Journey</h3>
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                                     {[
@@ -162,11 +162,11 @@ export default function PatientPage(props: { params: Promise<{ id: string }> }) 
                                         { date: 'Dec 10, 2025', event: 'Hyperlipidemia Dx', detail: 'Lipitor therapy initiated' },
                                         { date: 'Oct 05, 2025', event: 'Initial Onboarding', detail: 'Baseline vitals' },
                                     ].map((step, i) => (
-                                        <div key={i} style={{ position: 'relative', paddingLeft: '24px', borderLeft: '2px solid #F1F5F9' }}>
-                                            <div style={{ position: 'absolute', left: '-6px', top: '4px', width: '10px', height: '10px', borderRadius: '50%', background: '#6366F1', border: '2px solid white' }}></div>
-                                            <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#94A3B8' }}>{step.date}</div>
-                                            <div style={{ fontSize: '1rem', fontWeight: 700, color: '#1E293B' }}>{step.event}</div>
-                                            <div style={{ fontSize: '0.85rem', color: '#64748B' }}>{step.detail}</div>
+                                        <div key={i} style={{ position: 'relative', paddingLeft: '24px', borderLeft: '2px solid var(--color-border)' }}>
+                                            <div style={{ position: 'absolute', left: '-6px', top: '4px', width: '10px', height: '10px', borderRadius: '50%', background: '#6366F1', border: '2px solid var(--color-white)' }}></div>
+                                            <div style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--color-text-secondary)' }}>{step.date}</div>
+                                            <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-brand-secondary)' }}>{step.event}</div>
+                                            <div style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>{step.detail}</div>
                                         </div>
                                     ))}
                                 </div>
@@ -176,25 +176,25 @@ export default function PatientPage(props: { params: Promise<{ id: string }> }) 
 
                     {/* Medication Reconciliation Tab */}
                     {activeTab === 'meds' && (
-                        <div style={{ background: 'white', borderRadius: '24px', padding: '40px', border: '1px solid #E2E8F0', animation: 'fadeIn 0.3s ease' }}>
+                        <div style={{ background: 'var(--color-white)', borderRadius: '24px', padding: '40px', border: '1px solid var(--color-border)', animation: 'fadeIn 0.3s ease' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px' }}>
                                 <Pill size={24} color="#0D9488" />
-                                <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#1E293B' }}>Prescription Reconciliation</h3>
+                                <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-brand-secondary)' }}>Prescription Reconciliation</h3>
                             </div>
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px' }}>
                                 <div>
-                                    <h4 style={{ fontSize: '0.8rem', fontWeight: 800, color: '#94A3B8', textTransform: 'uppercase', marginBottom: '16px' }}>Current Regimen</h4>
+                                    <h4 style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--color-text-secondary)', textTransform: 'uppercase', marginBottom: '16px' }}>Current Regimen</h4>
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                         {patient.medications?.current.map((med, i) => (
-                                            <div key={i} style={{ padding: '16px', background: '#F8FAFC', borderRadius: '12px', color: '#475569', border: '1px solid #F1F5F9' }}>{med}</div>
+                                            <div key={i} style={{ padding: '16px', background: 'var(--color-bg-primary)', borderRadius: '12px', color: 'var(--color-text-secondary)', border: '1px solid var(--color-border)' }}>{med}</div>
                                         ))}
                                     </div>
                                 </div>
-                                <div style={{ borderLeft: '2px dashed #E2E8F0', paddingLeft: '48px' }}>
+                                <div style={{ borderLeft: '2px dashed var(--color-border)', paddingLeft: '48px' }}>
                                     <h4 style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0D9488', textTransform: 'uppercase', marginBottom: '16px' }}>Proposed Changes</h4>
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                         {patient.medications?.new?.map((med, i) => (
-                                            <div key={i} style={{ padding: '16px', background: '#F0FDFA', borderRadius: '12px', color: '#065F46', border: '1px solid #CCFBF1', fontWeight: 700, display: 'flex', justifyContent: 'space-between' }}>
+                                            <div key={i} style={{ padding: '16px', background: 'var(--color-bg-primary)', borderRadius: '12px', color: '#0D9488', border: '1px solid #0D9488', fontWeight: 700, display: 'flex', justifyContent: 'space-between' }}>
                                                 <span>{med}</span>
                                                 <span style={{ fontSize: '0.65rem', background: '#0D9488', color: 'white', padding: '2px 8px', borderRadius: '4px' }}>NEW</span>
                                             </div>

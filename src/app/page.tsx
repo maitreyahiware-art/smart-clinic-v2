@@ -114,29 +114,31 @@ export default function DashboardPage() {
     return (
       <div style={{
         position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-        background: 'rgba(0,0,0,0.4)', zIndex: 1000,
-        display: 'flex', alignItems: 'center', justifyContent: 'center'
+        background: 'rgba(0,0,0,0.6)', zIndex: 1000,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        backdropFilter: 'blur(4px)'
       }} onClick={() => setSelectedEvent(null)}>
         <div style={{
-          background: 'white', borderRadius: '12px', width: '320px',
-          boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-          overflow: 'hidden', animation: 'fadeIn 0.2s ease-out'
+          background: 'var(--color-white)', borderRadius: '12px', width: '320px',
+          boxShadow: 'var(--shadow-lg)',
+          overflow: 'hidden', animation: 'fadeIn 0.2s ease-out',
+          border: '1px solid var(--color-border)'
         }} onClick={e => e.stopPropagation()}>
 
-          <div style={{ padding: '16px', background: '#F9FAFB', borderBottom: '1px solid #E5E7EB', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h3 style={{ fontWeight: 600, fontSize: '1rem' }}>Manage Appointment</h3>
-            <button onClick={() => setSelectedEvent(null)}><X size={18} color="#666" /></button>
+          <div style={{ padding: '16px', background: 'var(--color-bg-primary)', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <h3 style={{ fontWeight: 600, fontSize: '1rem', color: 'var(--color-brand-secondary)' }}>Manage Appointment</h3>
+            <button onClick={() => setSelectedEvent(null)} style={{ color: 'var(--color-text-secondary)' }}><X size={18} /></button>
           </div>
 
           <div style={{ padding: '16px' }}>
             <div style={{ marginBottom: '16px' }}>
-              <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#111' }}>{selectedEvent.patientName}</div>
-              <div style={{ color: '#666', fontSize: '0.9rem' }}>{selectedEvent.time} • {selectedEvent.reason}</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-brand-secondary)' }}>{selectedEvent.patientName}</div>
+              <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem' }}>{selectedEvent.time} • {selectedEvent.reason}</div>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <Link href={`/patient/${selectedEvent.id}`} style={{ textDecoration: 'none' }}>
-                <button className={styles.actionBtn}>
+                <button className={styles.actionBtn} style={{ background: 'var(--color-white)', color: 'var(--color-brand-secondary)', border: '1px solid var(--color-border)' }}>
                   <User size={18} /> View Patient Chart
                 </button>
               </Link>
@@ -393,34 +395,34 @@ export default function DashboardPage() {
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
           <div>
-            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', marginBottom: '4px' }}>Dashboard</h1>
-            <p style={{ color: '#666', fontSize: '0.95rem' }}>Welcome back, Dr. Mehta</p>
+            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', marginBottom: '4px', color: 'var(--color-brand-secondary)' }}>Dashboard</h1>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem' }}>Welcome back, Dr. Mehta</p>
           </div>
 
           <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
             {/* Live Clock Widget */}
-            <div style={{ background: 'white', padding: '12px 20px', borderRadius: '12px', boxShadow: 'var(--shadow-sm)', display: 'flex', gap: '24px', border: '1px solid #E5E7EB' }}>
+            <div style={{ background: 'var(--color-white)', padding: '12px 20px', borderRadius: '12px', boxShadow: 'var(--shadow-sm)', display: 'flex', gap: '24px', border: '1px solid var(--color-border)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <Clock size={24} color="var(--color-brand-primary)" />
                 <div>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 600, lineHeight: 1 }}>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
-                  <div style={{ fontSize: '0.75rem', color: '#666', marginTop: '2px' }}>{timeRemaining()}</div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 600, lineHeight: 1, color: 'var(--color-brand-secondary)' }}>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '2px' }}>{timeRemaining()}</div>
                 </div>
               </div>
-              <div style={{ width: '1px', background: '#E5E7EB' }}></div>
+              <div style={{ width: '1px', background: 'var(--color-border)' }}></div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <Activity size={24} color="#10B981" />
                 <div>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 600, lineHeight: 1 }}>{patientsSeen} / {totalBooked}</div>
-                  <div style={{ fontSize: '0.75rem', color: '#666', marginTop: '2px' }}>Patients Seen</div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 600, lineHeight: 1, color: 'var(--color-brand-secondary)' }}>{patientsSeen} / {totalBooked}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '2px' }}>Patients Seen</div>
                 </div>
               </div>
-              <div style={{ width: '1px', background: '#E5E7EB' }}></div>
+              <div style={{ width: '1px', background: 'var(--color-border)' }}></div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <IndianRupee size={24} color="#F59E0B" />
                 <div>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 600, lineHeight: 1 }}>₹{estimatedRevenue}</div>
-                  <div style={{ fontSize: '0.75rem', color: '#666', marginTop: '2px' }}>Daily Revenue</div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 600, lineHeight: 1, color: 'var(--color-brand-secondary)' }}>₹{estimatedRevenue}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '2px' }}>Daily Revenue</div>
                 </div>
               </div>
             </div>
@@ -453,17 +455,17 @@ export default function DashboardPage() {
                 <AlertCircle size={20} /> Emergency Pivot
               </button>
 
-              <div style={{ background: '#E5E7EB', padding: '4px', borderRadius: '8px', display: 'flex', gap: '2px' }}>
+              <div style={{ background: 'var(--color-border)', padding: '4px', borderRadius: '8px', display: 'flex', gap: '2px' }}>
                 {['Day', 'Week', 'Month'].map((v) => (
                   <button
                     key={v}
                     onClick={() => setView(v as ViewType)}
                     style={{
                       padding: '8px 16px', borderRadius: '6px',
-                      background: view === v ? 'white' : 'transparent',
-                      color: view === v ? 'var(--color-brand-primary)' : '#666',
+                      background: view === v ? 'var(--color-white)' : 'transparent',
+                      color: view === v ? 'var(--color-brand-primary)' : 'var(--color-text-secondary)',
                       fontWeight: view === v ? 600 : 400,
-                      boxShadow: view === v ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                      boxShadow: view === v ? 'var(--shadow-sm)' : 'none',
                       transition: 'all 0.2s'
                     }}
                   >
@@ -476,17 +478,17 @@ export default function DashboardPage() {
         </div>
 
         {/* View Content */}
-        <div style={{ background: 'white', borderRadius: '12px', border: '1px solid #E5E7EB', overflow: 'hidden', minHeight: '600px' }}>
+        <div style={{ background: 'var(--color-white)', borderRadius: '12px', border: '1px solid var(--color-border)', overflow: 'hidden', minHeight: '600px' }}>
           {/* Calendar Header Nav */}
-          <div style={{ padding: '16px 20px', borderBottom: '1px solid #E5E7EB', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <h2 style={{ fontSize: '1.1rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-brand-secondary)' }}>
               <Calendar size={20} color="var(--color-brand-primary)" />
               {currentTime.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })}
             </h2>
             <div style={{ display: 'flex', gap: '8px' }}>
-              <button className="btn-secondary" style={{ padding: '8px' }}><ChevronLeft size={16} /></button>
-              <button className="btn-secondary" style={{ padding: '8px' }}>Today</button>
-              <button className="btn-secondary" style={{ padding: '8px' }}><ChevronRight size={16} /></button>
+              <button className="btn-secondary" style={{ padding: '8px', borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}><ChevronLeft size={16} /></button>
+              <button className="btn-secondary" style={{ padding: '8px', borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}>Today</button>
+              <button className="btn-secondary" style={{ padding: '8px', borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}><ChevronRight size={16} /></button>
             </div>
           </div>
 

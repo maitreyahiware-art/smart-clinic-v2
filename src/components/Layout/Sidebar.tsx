@@ -150,29 +150,30 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
                 >
                     <div
                         style={{
-                            background: 'white',
+                            background: 'var(--color-white)',
                             borderRadius: '16px',
                             width: '100%',
                             maxWidth: '600px',
                             maxHeight: '80vh',
                             display: 'flex',
                             flexDirection: 'column',
-                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                            boxShadow: 'var(--shadow-lg)',
                             overflow: 'hidden',
-                            animation: 'fadeIn 0.2s ease-out'
+                            animation: 'fadeIn 0.2s ease-out',
+                            border: '1px solid var(--color-border)'
                         }}
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Modal Header */}
                         <div style={{
                             padding: '20px 24px',
-                            borderBottom: '1px solid #E5E7EB',
+                            borderBottom: '1px solid var(--color-border)',
                             display: 'flex',
                             justifyContent: 'space-between',
                             alignItems: 'center',
-                            background: '#F9FAFB'
+                            background: 'var(--color-bg-primary)'
                         }}>
-                            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: '#111827', margin: 0 }}>
+                            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--color-brand-secondary)', margin: 0 }}>
                                 Find Patient
                             </h3>
                             <button
@@ -180,7 +181,7 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
                                 style={{
                                     background: 'transparent',
                                     border: 'none',
-                                    color: '#6B7280',
+                                    color: 'var(--color-text-secondary)',
                                     cursor: 'pointer',
                                     padding: '4px'
                                 }}
@@ -190,9 +191,9 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
                         </div>
 
                         {/* Search Box */}
-                        <div style={{ padding: '16px 24px', borderBottom: '1px solid #E5E7EB' }}>
+                        <div style={{ padding: '16px 24px', borderBottom: '1px solid var(--color-border)' }}>
                             <div style={{ position: 'relative' }}>
-                                <Search size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#9CA3AF' }} />
+                                <Search size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-secondary)' }} />
                                 <input
                                     type="text"
                                     placeholder="Type name, ID, or condition..."
@@ -202,20 +203,13 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
                                     style={{
                                         width: '100%',
                                         padding: '12px 12px 12px 40px',
-                                        border: '1px solid #E5E7EB',
+                                        border: '1px solid var(--color-border)',
                                         borderRadius: '8px',
                                         fontSize: '0.95rem',
                                         outline: 'none',
                                         transition: 'border-color 0.2s',
-                                        background: '#F9FAFB'
-                                    }}
-                                    onFocus={(e) => {
-                                        e.target.style.background = 'white';
-                                        e.target.style.borderColor = '#00B6C1';
-                                    }}
-                                    onBlur={(e) => {
-                                        e.target.style.background = '#F9FAFB';
-                                        e.target.style.borderColor = '#E5E7EB';
+                                        background: 'var(--color-bg-primary)',
+                                        color: 'var(--color-brand-secondary)'
                                     }}
                                 />
                             </div>
@@ -237,32 +231,22 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
                                         padding: '12px',
                                         marginBottom: '8px',
                                         borderRadius: '8px',
-                                        border: '1px solid #E5E7EB',
+                                        border: '1px solid var(--color-border)',
                                         textDecoration: 'none',
                                         transition: 'all 0.2s',
-                                        background: 'white'
-                                    }}
-                                    onMouseOver={(e) => {
-                                        e.currentTarget.style.borderColor = '#00B6C1';
-                                        e.currentTarget.style.backgroundColor = '#F0FDFA';
-                                        e.currentTarget.style.transform = 'translateY(-1px)';
-                                    }}
-                                    onMouseOut={(e) => {
-                                        e.currentTarget.style.borderColor = '#E5E7EB';
-                                        e.currentTarget.style.backgroundColor = 'white';
-                                        e.currentTarget.style.transform = 'none';
+                                        background: 'var(--color-white)'
                                     }}
                                 >
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-                                        <span style={{ fontWeight: 600, color: '#1F2937' }}>
+                                        <span style={{ fontWeight: 600, color: 'var(--color-brand-secondary)' }}>
                                             {patient.name}
                                         </span>
-                                        <span style={{ fontSize: '0.85rem', color: '#6B7280', fontFamily: 'monospace' }}>
+                                        <span style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', fontFamily: 'monospace' }}>
                                             {patient.time}
                                         </span>
                                     </div>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <div style={{ fontSize: '0.85rem', color: '#4B5563' }}>
+                                        <div style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
                                             {patient.reasonForVisit}
                                         </div>
                                         <div style={{
