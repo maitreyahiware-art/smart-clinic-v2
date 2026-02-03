@@ -8,7 +8,7 @@ import SmartSoapNote from '@/components/Patient/SmartSoapNote';
 import DispositionPanel from '@/components/Patient/DispositionPanel';
 import ActionRegistry from '@/components/Patient/ActionRegistry';
 import { notFound } from 'next/navigation';
-import { Activity, Clock, User, Info, Pill, GraduationCap, Brain, TrendingUp, History, ClipboardCheck, Layout, ListChecks, FileText } from 'lucide-react';
+import { Activity, Clock, User, Info, Pill, GraduationCap, Brain, TrendingUp, History, ClipboardCheck, Layout, ListChecks, FileText, Upload } from 'lucide-react';
 
 export default function PatientPage(props: { params: Promise<{ id: string }> }) {
     const params = use(props.params);
@@ -18,6 +18,10 @@ export default function PatientPage(props: { params: Promise<{ id: string }> }) 
     if (!patient) {
         notFound();
     }
+
+    const handleUploadClick = () => {
+        window.open('https://bn-medical-reports-analyzer.vercel.app/', '_blank');
+    };
 
     return (
         <DashboardLayout>
@@ -55,9 +59,31 @@ export default function PatientPage(props: { params: Promise<{ id: string }> }) 
                         </div>
                     </div>
 
-                    <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94A3B8', textTransform: 'uppercase' }}>Current Primary Reason</div>
-                        <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#1E293B' }}>{patient.reasonForVisit.split(':')[0]}</div>
+                    <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+                        <button
+                            onClick={handleUploadClick}
+                            style={{
+                                display: 'flex', alignItems: 'center', gap: '8px',
+                                padding: '10px 20px', borderRadius: '12px',
+                                background: 'white', color: '#00B6C1',
+                                border: '2px solid #00B6C1', fontWeight: 700,
+                                cursor: 'pointer', transition: 'all 0.2s'
+                            }}
+                            onMouseOver={e => {
+                                (e.currentTarget as any).style.background = '#00B6C1';
+                                (e.currentTarget as any).style.color = 'white';
+                            }}
+                            onMouseOut={e => {
+                                (e.currentTarget as any).style.background = 'white';
+                                (e.currentTarget as any).style.color = '#00B6C1';
+                            }}
+                        >
+                            <Upload size={18} /> Upload Prescription
+                        </button>
+                        <div style={{ textAlign: 'right' }}>
+                            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94A3B8', textTransform: 'uppercase' }}>Current Primary Reason</div>
+                            <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#1E293B' }}>{patient.reasonForVisit.split(':')[0]}</div>
+                        </div>
                     </div>
                 </div>
 
