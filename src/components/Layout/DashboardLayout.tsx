@@ -6,7 +6,7 @@ import Header from './Header';
 import SpecialtyGate from '../Specialty/SpecialtyGate';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
 
     return (
         <div className="layout-container">
