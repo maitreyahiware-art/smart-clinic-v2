@@ -151,13 +151,23 @@ export default function EnhancedPrescriptionWriter({
                         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                             <img src="/assets/BN_Logo-BlueBG-Square-HD.png" style={{ width: '56px', borderRadius: '14px' }} alt="Logo" />
                             <div>
-                                <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', color: '#1E293B', margin: 0 }}>Smart Clinic Rx</h2>
+                                <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', color: '#1E293B', margin: 0 }}>Smart Clinic Dawai</h2>
                                 <p style={{ color: '#64748B', fontWeight: 500 }}>{patientName} • {patientAge}y • {patientGender}</p>
                             </div>
                         </div>
-                        <button onClick={() => setShowPreview(!showPreview)} className="btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', borderRadius: '12px' }}>
-                            {showPreview ? <Eye size={20} /> : <Printer size={20} />}
-                            {showPreview ? 'Hide Preview' : 'Live Preview'}
+                        <button
+                            onClick={() => setShowPreview(!showPreview)}
+                            className="btn-secondary"
+                            style={{
+                                display: 'flex', alignItems: 'center', gap: '8px',
+                                padding: '12px 24px', borderRadius: '12px',
+                                background: showPreview ? '#F1F5F9' : 'var(--color-bg-primary)',
+                                color: showPreview ? 'var(--color-brand-primary)' : 'var(--color-text-secondary)',
+                                border: '1px solid var(--color-border)'
+                            }}
+                        >
+                            {showPreview ? <X size={20} /> : <Eye size={20} />}
+                            {showPreview ? 'Close Preview' : 'View Draft'}
                         </button>
                     </div>
 
@@ -318,7 +328,7 @@ export default function EnhancedPrescriptionWriter({
                             </div>
                             <input value={medInstructions} onChange={e => setMedInstructions(e.target.value)} placeholder="Special Instructions (e.g. Swallow whole, avoid milk)..." style={{ width: '100%', padding: '16px', borderRadius: '14px', border: '1px solid #86EFAC', marginTop: '20px' }} />
                             <button onClick={handleAddMed} style={{ width: '100%', marginTop: '24px', padding: '18px', background: '#16A34A', color: 'white', borderRadius: '16px', fontWeight: 900, fontSize: '1.2rem', cursor: 'pointer', border: 'none', boxShadow: '0 10px 15px -3px rgba(22, 163, 74, 0.4)' }}>
-                                <CheckCircle size={22} style={{ verticalAlign: 'middle', marginRight: '10px' }} /> Add to Rx
+                                <CheckCircle size={22} style={{ verticalAlign: 'middle', marginRight: '10px' }} /> Add to Dawai
                             </button>
                         </div>
                     )}
@@ -451,8 +461,21 @@ export default function EnhancedPrescriptionWriter({
                             <label style={{ fontSize: '0.8rem', fontWeight: 800, color: '#64748B', display: 'block' }}>RE-VISIT DATE</label>
                             <input type="date" value={followUpDate} onChange={e => setFollowUpDate(e.target.value)} style={{ padding: '10px 16px', borderRadius: '10px', border: '2px solid #E2E8F0', marginTop: '6px' }} />
                         </div>
-                        <button className="btn-primary" style={{ padding: '18px 48px', borderRadius: '16px', fontSize: '1.2rem', fontWeight: 900, background: 'linear-gradient(135deg, var(--color-brand-primary) 0%, #008B9A 100%)', boxShadow: '0 15px 25px -5px rgba(0, 182, 193, 0.4)' }}>
-                            <Send size={22} style={{ marginRight: '10px', verticalAlign: 'middle' }} /> Finalize Rx
+                        <button
+                            onClick={() => {
+                                setShowPreview(true);
+                                // Smooth scroll to the top where the preview is most visible
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            className="btn-primary"
+                            style={{
+                                padding: '18px 48px', borderRadius: '16px', fontSize: '1.2rem', fontWeight: 900,
+                                background: 'linear-gradient(135deg, var(--color-brand-primary) 0%, #008B9A 100%)',
+                                boxShadow: '0 15px 25px -5px rgba(0, 182, 193, 0.4)',
+                                border: 'none', color: 'white', cursor: 'pointer'
+                            }}
+                        >
+                            <Eye size={22} style={{ marginRight: '10px', verticalAlign: 'middle' }} /> Review & Preview
                         </button>
                     </div>
                 </div>
@@ -474,6 +497,37 @@ export default function EnhancedPrescriptionWriter({
                                 </div>
                             </div>
                             <div style={{ textAlign: 'right' }}>
+                                <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', marginBottom: '8px' }}>
+                                    <button
+                                        onClick={() => window.print()}
+                                        style={{ padding: '6px 12px', borderRadius: '6px', background: 'var(--color-brand-primary)', color: 'white', border: 'none', fontSize: '10px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                                    >
+                                        <Printer size={12} /> Print
+                                    </button>
+                                    <button
+                                        style={{ padding: '6px 12px', borderRadius: '6px', background: '#10B981', color: 'white', border: 'none', fontSize: '10px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                                        onClick={async () => {
+                                            // Handle Saving to DB logic here
+                                            const newMeds = medications.map(m => m.brandName);
+                                            try {
+                                                await fetch(`/api/patients/${patientId}`, {
+                                                    method: 'PATCH',
+                                                    body: JSON.stringify({
+                                                        medications: {
+                                                            current: [], // Add current if needed
+                                                            new: newMeds
+                                                        }
+                                                    })
+                                                });
+                                                alert('Dawai Saved & Synchronized!');
+                                            } catch (e) {
+                                                console.error(e);
+                                            }
+                                        }}
+                                    >
+                                        <Send size={12} /> Save & Sync
+                                    </button>
+                                </div>
                                 <h3 style={{ fontSize: '18px', fontWeight: 800, margin: 0 }}>Dr. S. Mehta</h3>
                                 <p style={{ margin: 0, fontSize: '10px' }}>MBBS, MD (Family Medicine)</p>
                                 <p style={{ margin: 0, fontSize: '9px', color: '#64748B' }}>Reg: #MH-123-ABC • +91 9988776655</p>

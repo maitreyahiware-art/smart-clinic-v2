@@ -3,8 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/Layout/DashboardLayout';
 import { patients } from '@/data/patients';
-import { Calendar, Clock, Activity, ChevronLeft, ChevronRight, IndianRupee, CheckCircle, XCircle, CalendarClock, User, MoreHorizontal, X, AlertCircle } from 'lucide-react';
+import { Calendar, Clock, Activity, ChevronLeft, ChevronRight, IndianRupee, CheckCircle, XCircle, CalendarClock, User, MoreHorizontal, X, AlertCircle, Target, Pill, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+
+import { useSpecialty } from '@/context/SpecialtyContext';
 
 // --- Type Definitions ---
 type ViewType = 'Day' | 'Week' | 'Month';
@@ -15,12 +17,16 @@ interface CalendarEvent {
   patientName: string;
   time: string;
   reason: string;
-  riskLevel: 'Critical' | 'Monitor' | 'Stable';
+  riskLevel: 'Critical' | 'High' | 'Monitor' | 'Stable';
   dayOffset: number; // 0 = today, -1 = yesterday, etc.
   status: AppointmentStatus;
+  followUpDate?: string;
+  symptoms?: string[];
+  medications?: { current: string[] };
 }
 
 export default function DashboardPage() {
+  const { specialty } = useSpecialty();
   const [view, setView] = useState<ViewType>('Day');
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -36,44 +42,74 @@ export default function DashboardPage() {
 
   // --- Data Generation ---
   useEffect(() => {
-    // Only generate once on mount
-    const initialEvents: CalendarEvent[] = [];
+    if (!specialty) return;
 
-    // 1. Add Today's patients
-    patients.forEach(p => {
-      initialEvents.push({
-        id: p.id,
-        patientName: p.name,
-        time: p.time,
-        reason: p.reasonForVisit,
-        riskLevel: p.riskLevel,
-        dayOffset: 0,
-        status: p.status === 'Done' ? 'Seen' : 'Scheduled'
-      });
-    });
+    const fetchPatients = async () => {
+      try {
+        const response = await fetch('/api/patients');
+        const realPatients = await response.json();
 
-    // 2. Add Fake patients for other days
-    const fakeNames = ["Rohan Gupta", "Aisha Khan", "John Doe", "Emily Clark", "Michael Ray", "Sarah Lee", "David Kim", "Lisa Wang"];
-    const reasons = ["Follow-up", "Annual Physical", "Migraine", "Fever", "Back Pain", "Diabetes Check"];
-    const risks = ['Stable', 'Stable', 'Monitor', 'Stable', 'Critical', 'Stable'] as const;
+        const initialEvents: CalendarEvent[] = [];
 
-    for (let i = -15; i <= 15; i++) {
-      if (i === 0) continue;
-      const count = Math.floor(Math.random() * 4) + 2;
-      for (let j = 0; j < count; j++) {
-        initialEvents.push({
-          id: `fake-${i}-${j}`,
-          patientName: fakeNames[Math.floor(Math.random() * fakeNames.length)],
-          time: `${9 + j}:00 ${j < 3 ? 'AM' : 'PM'}`,
-          reason: reasons[Math.floor(Math.random() * reasons.length)],
-          riskLevel: risks[Math.floor(Math.random() * risks.length)],
-          dayOffset: i,
-          status: 'Scheduled'
+        // 1. Add Today's patients from API
+        realPatients.forEach((p: any) => {
+          let dynamicRisk = p.riskLevel;
+          // Note: Condition function might not be available directly if coming from JSON
+          // We can re-apply the logic or just trust the DB for now.
+          // For Cardiology specifically, we can re-evaluate.
+
+          if (specialty.id === 'cardiology' && p.vitals?.bps >= 180) {
+            dynamicRisk = 'Critical';
+          }
+
+          // Map status correctly
+          let mappedStatus: AppointmentStatus = 'Scheduled';
+          const lowerStatus = p.status?.toLowerCase() || '';
+          if (['completed', 'done', 'seen'].includes(lowerStatus)) mappedStatus = 'Seen';
+          else if (lowerStatus === 'cancelled') mappedStatus = 'Cancelled';
+          else if (lowerStatus === 'rescheduled') mappedStatus = 'Rescheduled';
+
+          initialEvents.push({
+            id: p.id,
+            patientName: p.name,
+            time: p.time,
+            reason: p.reasonForVisit,
+            riskLevel: dynamicRisk,
+            dayOffset: 0,
+            status: mappedStatus,
+            symptoms: p.symptoms,
+            medications: p.medications
+          });
         });
+
+        // 2. Add Fake patients for other days
+        const fakeNames = ["Rohan Gupta", "Aisha Khan", "John Doe", "Emily Clark", "Michael Ray", "Sarah Lee", "David Kim", "Lisa Wang"];
+        const reasons = ["Follow-up", "Annual Physical", "Migraine", "Fever", "Back Pain", "Diabetes Check"];
+        const risks = ['Stable', 'Stable', 'Monitor', 'Stable', 'Critical', 'Stable'] as const;
+
+        for (let i = -15; i <= 15; i++) {
+          if (i === 0) continue;
+          const count = Math.floor(Math.random() * 4) + 2;
+          for (let j = 0; j < count; j++) {
+            initialEvents.push({
+              id: `fake-${i}-${j}`,
+              patientName: fakeNames[Math.floor(Math.random() * fakeNames.length)],
+              time: `${9 + j}:00 ${j < 3 ? 'AM' : 'PM'}`,
+              reason: reasons[Math.floor(Math.random() * reasons.length)],
+              riskLevel: risks[Math.floor(Math.random() * risks.length)],
+              dayOffset: i,
+              status: 'Scheduled'
+            });
+          }
+        }
+        setEvents(initialEvents);
+      } catch (error) {
+        console.error("Failed to fetch patients:", error);
       }
-    }
-    setEvents(initialEvents);
-  }, []);
+    };
+
+    fetchPatients();
+  }, [specialty]);
 
   // --- Effects ---
   useEffect(() => {
@@ -85,6 +121,10 @@ export default function DashboardPage() {
   const updateStatus = (id: string, newStatus: AppointmentStatus) => {
     setEvents(prev => prev.map(e => e.id === id ? { ...e, status: newStatus } : e));
     setSelectedEvent(null); // Close menu
+  };
+
+  const updateFollowUpDate = (id: string, date: string) => {
+    setEvents(prev => prev.map(e => e.id === id ? { ...e, followUpDate: date } : e));
   };
 
   // --- Helpers ---
@@ -101,6 +141,7 @@ export default function DashboardPage() {
     if (status === 'Seen') return { bg: '#ECFDF5', border: '#10B981', text: '#065F46' };
 
     if (level === 'Critical') return { bg: '#FEE2E2', border: '#DC2626', text: '#991B1B' };
+    if (level === 'High') return { bg: '#FFEDD5', border: '#F97316', text: '#9A3412' }; // Orange
     if (level === 'Monitor') return { bg: '#FEF3C7', border: '#F59E0B', text: '#92400E' };
     return { bg: '#DBEAFE', border: '#3B82F6', text: '#1E40AF' };
   };
@@ -181,101 +222,184 @@ export default function DashboardPage() {
   // --- View Renders ---
 
   const renderDayView = () => {
-    const timeSlots = [
-      '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-      '12:00', '12:30', '14:00', '14:30', '15:00', '15:30',
-      '16:00', '16:30', '17:00', '17:30'
-    ];
+    const todayEvents = events
+      .filter(e => e.dayOffset === 0)
+      .sort((a, b) => {
+        const timeToMinutes = (t: string) => {
+          const [time, period] = t.split(' ');
+          let [h, m] = time.split(':').map(Number);
+          if (period === 'PM' && h !== 12) h += 12;
+          if (period === 'AM' && h === 12) h = 0;
+          return h * 60 + (m || 0);
+        };
+        return timeToMinutes(a.time) - timeToMinutes(b.time);
+      });
 
-    const todayEvents = events.filter(e => e.dayOffset === 0);
+    if (todayEvents.length === 0) {
+      return (
+        <div style={{ textAlign: 'center', padding: '100px 40px', color: 'var(--color-text-secondary)' }}>
+          <CalendarClock size={48} style={{ opacity: 0.2, marginBottom: '16px' }} />
+          <p>No patients scheduled for today.</p>
+        </div>
+      );
+    }
 
     return (
-      <div style={{ display: 'grid', gap: '8px' }}>
-        {timeSlots.map(time => {
-          // Find event for this time slot
-          const event = todayEvents.find(e => e.time.startsWith(time) || e.time === `${time} AM` || e.time === `${time} PM`);
-          const colors = event ? getRiskColor(event.riskLevel, event.status) : null;
-          const isCancelled = event?.status === 'Cancelled';
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        {todayEvents.map((event, idx) => {
+          const colors = getRiskColor(event.riskLevel, event.status);
+          const isCancelled = event.status === 'Cancelled';
+          const isSeen = event.status === 'Seen';
 
           return (
-            <div key={time} style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: '16px', alignItems: 'center', minHeight: '70px', borderBottom: '1px solid #F3F4F6', paddingBottom: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666', fontSize: '0.9rem', fontWeight: 500 }}>
-                <Clock size={16} />{time}
+            <div key={event.id} style={{
+              display: 'grid', gridTemplateColumns: '100px 1fr', gap: '24px',
+              alignItems: 'center', padding: '16px',
+              background: isSeen ? '#F8FAFC' : 'white',
+              borderRadius: '16px',
+              border: `1px solid ${isSeen ? '#E2E8F0' : 'var(--color-border)'}`,
+              transition: 'all 0.2s',
+              boxShadow: isSeen ? 'none' : '0 2px 4px rgba(0,0,0,0.02)'
+            }}>
+              <div style={{
+                fontSize: '1rem', fontWeight: 700, color: 'var(--color-brand-secondary)',
+                display: 'flex', flexDirection: 'column', alignItems: 'center'
+              }}>
+                {event.time}
+                <div style={{ width: '2px', height: '24px', background: 'var(--color-border)', margin: '4px 0' }}></div>
               </div>
-              <div>
-                {event ? (
-                  <div
-                    style={{
-                      display: 'block', padding: '12px 16px',
-                      background: colors?.bg, borderLeft: `4px solid ${colors?.border}`,
-                      borderRadius: '4px', transition: 'all 0.2s',
-                      opacity: isCancelled ? 0.6 : 1
-                    }}
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                      <Link href={`/patient/${event.id}`} style={{ flex: 1, textDecoration: 'none' }}>
-                        <div style={{ fontWeight: 600, fontSize: '1rem', color: colors?.text, marginBottom: '4px', textDecoration: isCancelled ? 'line-through' : 'none' }}>
-                          {event.patientName}
-                          {!isCancelled && <span style={{ marginLeft: '8px', fontSize: '0.75rem', fontWeight: 500, opacity: 0.8 }}>{event.reason}</span>}
-                        </div>
-                        {event.status !== 'Scheduled' && (
-                          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: colors?.text }}>
-                            {event.status}
-                          </div>
-                        )}
-                      </Link>
 
-                      {/* Direct Actions */}
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        {event.status === 'Scheduled' && (
-                          <>
-                            <button
-                              title="Mark as Seen"
-                              onClick={(e) => { e.stopPropagation(); updateStatus(event.id, 'Seen'); }}
-                              style={{
-                                padding: '6px', borderRadius: '50%',
-                                background: '#ECFDF5', color: '#059669',
-                                border: '1px solid #A7F3D0', cursor: 'pointer',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                transition: 'transform 0.1s'
-                              }}
-                              onMouseOver={e => e.currentTarget.style.transform = 'scale(1.1)'}
-                              onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
-                            >
-                              <CheckCircle size={16} />
-                            </button>
-                            <button
-                              title="Cancel"
-                              onClick={(e) => { e.stopPropagation(); updateStatus(event.id, 'Cancelled'); }}
-                              style={{
-                                padding: '6px', borderRadius: '50%',
-                                background: '#FEF2F2', color: '#DC2626',
-                                border: '1px solid #FECACA', cursor: 'pointer',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                transition: 'transform 0.1s'
-                              }}
-                              onMouseOver={e => e.currentTarget.style.transform = 'scale(1.1)'}
-                              onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
-                            >
-                              <XCircle size={16} />
-                            </button>
-                          </>
-                        )}
-                        {event.status === 'Seen' && (
-                          <div style={{ padding: '4px 8px', background: '#ECFDF5', color: '#059669', borderRadius: '12px', fontSize: '0.75rem', fontWeight: 600, border: '1px solid #A7F3D0' }}>
-                            Completed
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div style={{ fontSize: '0.85rem', color: '#BBB', fontStyle: 'italic', padding: '12px' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }} className="hover:text-blue-500 cursor-pointer">
-                      No appointments <span style={{ fontSize: '0.7rem', background: '#F3F4F6', padding: '2px 6px', borderRadius: '4px' }}>+ Add</span>
+              <div style={{
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                padding: '12px 20px', background: colors.bg,
+                borderRadius: '12px', borderLeft: `6px solid ${colors.border}`,
+                opacity: isCancelled ? 0.5 : 1
+              }}>
+                <Link href={`/patient/${event.id}`} style={{ flex: 1, textDecoration: 'none' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ fontWeight: 800, fontSize: '1.1rem', color: colors.text }}>{event.patientName}</span>
+                    <span style={{
+                      fontSize: '0.75rem', fontWeight: 700, padding: '2px 8px',
+                      borderRadius: '4px', background: 'rgba(255,255,255,0.5)', color: colors.text
+                    }}>
+                      {event.riskLevel.toUpperCase()}
                     </span>
                   </div>
-                )}
+                  <div style={{ fontSize: '0.9rem', color: colors.text, opacity: 0.8, marginTop: '4px', fontWeight: 500 }}>
+                    {event.reason}
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '12px', marginTop: '10px' }}>
+                    {event.symptoms && event.symptoms.length > 0 && (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                        {event.symptoms.slice(0, 2).map((s, i) => (
+                          <span key={i} style={{ fontSize: '0.7rem', padding: '2px 6px', background: 'rgba(255,255,255,0.3)', borderRadius: '4px', color: colors.text, fontWeight: 700 }}>
+                            {s.toUpperCase()}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {event.medications?.current && event.medications.current.length > 0 && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.7rem', color: colors.text, opacity: 0.7, fontWeight: 700 }}>
+                        <Pill size={12} /> {event.medications.current[0]} {event.medications.current.length > 1 ? `+${event.medications.current.length - 1}` : ''}
+                      </div>
+                    )}
+                  </div>
+                </Link>
+
+                <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+                  {/* BN Smart Life Health Score */}
+                  {(() => {
+                    const getHealthScore = (level: string, id: string) => {
+                      const seed = (id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) || 42;
+                      if (level === 'Critical') return 20 + (seed % 15);
+                      if (level === 'High') return 45 + (seed % 15);
+                      if (level === 'Monitor') return 65 + (seed % 15);
+                      return 85 + (seed % 10);
+                    };
+                    const score = getHealthScore(event.riskLevel, event.id);
+                    return (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'center' }}>
+                        <label style={{ fontSize: '0.65rem', fontWeight: 800, color: colors.text, opacity: 0.6, textTransform: 'uppercase', whiteSpace: 'nowrap' }}>BN Health Score</label>
+                        <div style={{
+                          background: 'rgba(255,255,255,0.5)',
+                          padding: '4px 12px',
+                          borderRadius: '8px',
+                          border: `1px solid ${colors.border}`,
+                          display: 'flex',
+                          alignItems: 'baseline',
+                          gap: '2px',
+                          minWidth: '60px',
+                          justifyContent: 'center'
+                        }}>
+                          <span style={{ fontSize: '1.1rem', fontWeight: 800, color: colors.text }}>{score}</span>
+                          <span style={{ fontSize: '0.65rem', fontWeight: 600, color: colors.text, opacity: 0.5 }}>/100</span>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  {/* Next Followup Date Selector */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <label style={{ fontSize: '0.65rem', fontWeight: 800, color: colors.text, opacity: 0.6, textTransform: 'uppercase' }}>Next Follow-up</label>
+                    <input
+                      type="date"
+                      value={event.followUpDate || ''}
+                      onChange={(e) => updateFollowUpDate(event.id, e.target.value)}
+                      style={{
+                        padding: '6px 10px',
+                        borderRadius: '8px',
+                        border: `1px solid ${colors.border}`,
+                        background: 'rgba(255,255,255,0.4)',
+                        fontSize: '0.8rem',
+                        color: colors.text,
+                        fontWeight: 600,
+                        outline: 'none'
+                      }}
+                    />
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    {event.status === 'Scheduled' && (
+                      <>
+                        <button
+                          onClick={() => updateStatus(event.id, 'Seen')}
+                          style={{ padding: '10px', borderRadius: '12px', background: 'white', color: '#059669', border: '1px solid #D1FAE5', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, fontSize: '0.8rem' }}
+                        >
+                          <CheckCircle size={16} /> Mark Done
+                        </button>
+                      </>
+                    )}
+
+                    <Link href={`/patient/${event.id}?tab=dawai`} style={{ textDecoration: 'none' }}>
+                      <button
+                        style={{
+                          padding: '10px 16px', borderRadius: '12px',
+                          background: 'white', color: 'var(--color-brand-primary)',
+                          border: '1px solid var(--color-brand-primary)',
+                          cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px',
+                          fontWeight: 700, fontSize: '0.8rem',
+                          transition: 'all 0.2s'
+                        }}
+                        className="hover:bg-teal-50"
+                      >
+                        <Pill size={16} /> Direct Dawai
+                      </button>
+                    </Link>
+
+                    {event.status === 'Seen' && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#059669', fontWeight: 800, fontSize: '0.85rem', background: '#D1FAE5', padding: '10px 16px', borderRadius: '12px' }}>
+                        <CheckCircle size={18} /> VISITED
+                      </div>
+                    )}
+                    {event.status === 'Cancelled' && (
+                      <div style={{ color: '#94A3B8', fontWeight: 700, fontSize: '0.85rem' }}>CANCELLED</div>
+                    )}
+                    <button onClick={() => setSelectedEvent(event)} style={{ padding: '8px', color: 'var(--color-text-secondary)', background: 'transparent', border: 'none', cursor: 'pointer' }}>
+                      <MoreHorizontal size={20} />
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           );
@@ -396,7 +520,7 @@ export default function DashboardPage() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
           <div>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', marginBottom: '4px', color: 'var(--color-brand-secondary)' }}>Dashboard</h1>
-            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem' }}>Welcome back, Dr. Mehta</p>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem' }}>Welcome back, Chief Medical Officer</p>
           </div>
 
           <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
@@ -419,15 +543,18 @@ export default function DashboardPage() {
               </div>
               <div style={{ width: '1px', background: 'var(--color-border)' }}></div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <IndianRupee size={24} color="#F59E0B" />
+                <Target size={24} color="var(--color-accent-gamification)" />
                 <div>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 600, lineHeight: 1, color: 'var(--color-brand-secondary)' }}>₹{estimatedRevenue}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '2px' }}>Daily Revenue</div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 600, lineHeight: 1, color: 'var(--color-brand-secondary)' }}>
+                    {events.filter(e => e.dayOffset === 0 && (e.riskLevel === 'Critical' || e.riskLevel === 'High')).length}{' '}
+                    {specialty?.id === 'cardiology' ? 'Cardiac Alerts' : 'Alerts'}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '2px' }}>{specialty?.label} High Risk</div>
                 </div>
               </div>
             </div>
 
-            {/* View Toggles & Emergency Pivot */}
+            {/* Actions & View Toggles */}
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
               <button
                 onClick={() => {
@@ -443,19 +570,29 @@ export default function DashboardPage() {
                     alert("Broadcast complete. 24 patients notified via WhatsApp/SMS.");
                   }
                 }}
+                className="hover-glow"
                 style={{
-                  padding: '12px 24px', borderRadius: '12px',
-                  background: 'linear-gradient(135deg, #EF4444 0%, #B91C1C 100%)',
-                  color: 'white', fontWeight: 900, fontSize: '0.9rem',
-                  border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px',
-                  boxShadow: '0 10px 15px -3px rgba(239, 68, 68, 0.4)',
-                  textTransform: 'uppercase', letterSpacing: '0.05em'
+                  padding: '10px 18px',
+                  borderRadius: '10px',
+                  background: '#EF4444',
+                  color: 'white',
+                  fontWeight: 700,
+                  fontSize: '0.8rem',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  boxShadow: '0 4px 12px rgba(239, 68, 68, 0.2)',
+                  transition: 'transform 0.2s',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.03em'
                 }}
               >
-                <AlertCircle size={20} /> Emergency Pivot
+                <AlertCircle size={18} /> Emergency Pivot
               </button>
 
-              <div style={{ background: 'var(--color-border)', padding: '4px', borderRadius: '8px', display: 'flex', gap: '2px' }}>
+              <div style={{ background: 'var(--color-bg-primary)', padding: '4px', borderRadius: '8px', display: 'flex', gap: '2px', border: '1px solid var(--color-border)' }}>
                 {['Day', 'Week', 'Month'].map((v) => (
                   <button
                     key={v}
@@ -466,6 +603,9 @@ export default function DashboardPage() {
                       color: view === v ? 'var(--color-brand-primary)' : 'var(--color-text-secondary)',
                       fontWeight: view === v ? 600 : 400,
                       boxShadow: view === v ? 'var(--shadow-sm)' : 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: '0.85rem',
                       transition: 'all 0.2s'
                     }}
                   >
@@ -477,26 +617,28 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* View Content */}
-        <div style={{ background: 'var(--color-white)', borderRadius: '12px', border: '1px solid var(--color-border)', overflow: 'hidden', minHeight: '600px' }}>
-          {/* Calendar Header Nav */}
-          <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-brand-secondary)' }}>
-              <Calendar size={20} color="var(--color-brand-primary)" />
-              {currentTime.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })}
-            </h2>
-            <div style={{ display: 'flex', gap: '8px' }}>
-              <button className="btn-secondary" style={{ padding: '8px', borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}><ChevronLeft size={16} /></button>
-              <button className="btn-secondary" style={{ padding: '8px', borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}>Today</button>
-              <button className="btn-secondary" style={{ padding: '8px', borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}><ChevronRight size={16} /></button>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '24px' }}>
+          {/* Main View Area */}
+          <div style={{ background: 'var(--color-white)', borderRadius: '12px', border: '1px solid var(--color-border)', overflow: 'hidden', minHeight: '600px', boxShadow: 'var(--shadow-md)' }}>
+            {/* Calendar Header Nav */}
+            <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--color-bg-primary)' }}>
+              <h2 style={{ fontSize: '1.1rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-brand-secondary)' }}>
+                <Calendar size={20} color="var(--color-specialty-primary)" />
+                {currentTime.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })}
+              </h2>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button className="btn-secondary" style={{ padding: '8px', borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}><ChevronLeft size={16} /></button>
+                <button className="btn-secondary" style={{ padding: '8px', borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}>Today</button>
+                <button className="btn-secondary" style={{ padding: '8px', borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)' }}><ChevronRight size={16} /></button>
+              </div>
             </div>
-          </div>
 
-          {/* Render Active View */}
-          <div style={{ padding: view === 'Month' ? '0' : '20px' }}>
-            {view === 'Day' && renderDayView()}
-            {view === 'Week' && renderWeekView()}
-            {view === 'Month' && renderMonthView()}
+            {/* Render Active View */}
+            <div style={{ padding: view === 'Month' ? '0' : '20px' }}>
+              {view === 'Day' && renderDayView()}
+              {view === 'Week' && renderWeekView()}
+              {view === 'Month' && renderMonthView()}
+            </div>
           </div>
         </div>
       </div>

@@ -1,0 +1,2218 @@
+{
+  "patients": [
+    {
+      "id": "1",
+      "name": "Aarav Malhotra",
+      "age": 49,
+      "gender": "F",
+      "time": "09:00 AM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 154,
+        "bpd": 86,
+        "spo2": 95,
+        "heartRate": 79,
+        "rr": 22
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Baby Kyra Singh",
+      "age": 20,
+      "gender": "F",
+      "time": "09:15 AM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 176,
+        "bpd": 98,
+        "spo2": 97,
+        "heartRate": 95,
+        "rr": 23
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Zoya Sheikh",
+      "age": 58,
+      "gender": "F",
+      "time": "09:30 AM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 153,
+        "bpd": 93,
+        "spo2": 95,
+        "heartRate": 101,
+        "rr": 17
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Rohan Verma",
+      "age": 47,
+      "gender": "F",
+      "time": "09:45 AM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 137,
+        "bpd": 89,
+        "spo2": 95,
+        "heartRate": 76,
+        "rr": 20
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Priya Nair",
+      "age": 40,
+      "gender": "M",
+      "time": "10:00 AM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 155,
+        "bpd": 94,
+        "spo2": 99,
+        "heartRate": 94,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Vikram Joshi",
+      "age": 63,
+      "gender": "M",
+      "time": "10:15 AM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 146,
+        "bpd": 83,
+        "spo2": 97,
+        "heartRate": 111,
+        "rr": 19
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Ananya Reddy",
+      "age": 21,
+      "gender": "F",
+      "time": "10:30 AM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 163,
+        "bpd": 82,
+        "spo2": 96,
+        "heartRate": 102,
+        "rr": 23
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Arjun Khanna",
+      "age": 36,
+      "gender": "F",
+      "time": "10:45 AM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 179,
+        "bpd": 93,
+        "spo2": 97,
+        "heartRate": 98,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Sunita Patel",
+      "age": 64,
+      "gender": "M",
+      "time": "11:00 AM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 174,
+        "bpd": 80,
+        "spo2": 96,
+        "heartRate": 128,
+        "rr": 19
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Kabir Ahmed",
+      "age": 20,
+      "gender": "F",
+      "time": "11:15 AM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 131,
+        "bpd": 83,
+        "spo2": 99,
+        "heartRate": 122,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Lakshmi Iyer",
+      "age": 41,
+      "gender": "M",
+      "time": "11:30 AM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 170,
+        "bpd": 95,
+        "spo2": 95,
+        "heartRate": 100,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Dev Sharma",
+      "age": 45,
+      "gender": "F",
+      "time": "11:45 AM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 146,
+        "bpd": 89,
+        "spo2": 95,
+        "heartRate": 71,
+        "rr": 18
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Fatima Khan",
+      "age": 45,
+      "gender": "F",
+      "time": "12:00 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 122,
+        "bpd": 88,
+        "spo2": 99,
+        "heartRate": 98,
+        "rr": 17
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Rajesh Gupta",
+      "age": 65,
+      "gender": "M",
+      "time": "12:15 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 132,
+        "bpd": 81,
+        "spo2": 95,
+        "heartRate": 76,
+        "rr": 17
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Meera Krishnan",
+      "age": 24,
+      "gender": "F",
+      "time": "12:30 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 130,
+        "bpd": 88,
+        "spo2": 96,
+        "heartRate": 107,
+        "rr": 21
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Suresh Yadav",
+      "age": 33,
+      "gender": "F",
+      "time": "12:45 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 169,
+        "bpd": 85,
+        "spo2": 96,
+        "heartRate": 95,
+        "rr": 23
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Kavita Rao",
+      "age": 42,
+      "gender": "M",
+      "time": "13:00 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 129,
+        "bpd": 82,
+        "spo2": 98,
+        "heartRate": 119,
+        "rr": 21
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "18",
+      "name": "Ishaan Mehta",
+      "age": 46,
+      "gender": "M",
+      "time": "13:15 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 171,
+        "bpd": 85,
+        "spo2": 96,
+        "heartRate": 112,
+        "rr": 18
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "19",
+      "name": "Anand Prakash",
+      "age": 34,
+      "gender": "F",
+      "time": "13:30 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 152,
+        "bpd": 98,
+        "spo2": 99,
+        "heartRate": 123,
+        "rr": 22
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "20",
+      "name": "Deepika Chawla",
+      "age": 22,
+      "gender": "M",
+      "time": "13:45 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 136,
+        "bpd": 95,
+        "spo2": 97,
+        "heartRate": 101,
+        "rr": 23
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "21",
+      "name": "Nitin Bansal",
+      "age": 39,
+      "gender": "F",
+      "time": "14:00 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 167,
+        "bpd": 98,
+        "spo2": 95,
+        "heartRate": 109,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "22",
+      "name": "Ritu Malhotra",
+      "age": 36,
+      "gender": "F",
+      "time": "14:15 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 159,
+        "bpd": 96,
+        "spo2": 96,
+        "heartRate": 123,
+        "rr": 20
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "23",
+      "name": "Pradeep Kumar",
+      "age": 68,
+      "gender": "M",
+      "time": "14:30 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 120,
+        "bpd": 82,
+        "spo2": 96,
+        "heartRate": 85,
+        "rr": 20
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "24",
+      "name": "Shreya Ghosh",
+      "age": 37,
+      "gender": "F",
+      "time": "14:45 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 124,
+        "bpd": 95,
+        "spo2": 98,
+        "heartRate": 73,
+        "rr": 19
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "25",
+      "name": "Vivek Sinha",
+      "age": 26,
+      "gender": "F",
+      "time": "15:00 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 121,
+        "bpd": 98,
+        "spo2": 99,
+        "heartRate": 75,
+        "rr": 23
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "26",
+      "name": "Aarav Malhotra",
+      "age": 21,
+      "gender": "F",
+      "time": "15:15 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 181,
+        "bpd": 84,
+        "spo2": 99,
+        "heartRate": 89,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "27",
+      "name": "Baby Kyra Singh",
+      "age": 52,
+      "gender": "F",
+      "time": "15:30 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 150,
+        "bpd": 96,
+        "spo2": 98,
+        "heartRate": 122,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "28",
+      "name": "Zoya Sheikh",
+      "age": 39,
+      "gender": "F",
+      "time": "15:45 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 156,
+        "bpd": 83,
+        "spo2": 96,
+        "heartRate": 122,
+        "rr": 17
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "29",
+      "name": "Rohan Verma",
+      "age": 37,
+      "gender": "M",
+      "time": "16:00 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 149,
+        "bpd": 88,
+        "spo2": 97,
+        "heartRate": 72,
+        "rr": 19
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "30",
+      "name": "Priya Nair",
+      "age": 28,
+      "gender": "F",
+      "time": "16:15 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 148,
+        "bpd": 81,
+        "spo2": 96,
+        "heartRate": 73,
+        "rr": 18
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "31",
+      "name": "Vikram Joshi",
+      "age": 54,
+      "gender": "M",
+      "time": "16:30 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 182,
+        "bpd": 90,
+        "spo2": 97,
+        "heartRate": 120,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "32",
+      "name": "Ananya Reddy",
+      "age": 22,
+      "gender": "F",
+      "time": "16:45 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 150,
+        "bpd": 98,
+        "spo2": 96,
+        "heartRate": 123,
+        "rr": 17
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "33",
+      "name": "Arjun Khanna",
+      "age": 53,
+      "gender": "F",
+      "time": "17:00 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 167,
+        "bpd": 94,
+        "spo2": 97,
+        "heartRate": 77,
+        "rr": 17
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "34",
+      "name": "Sunita Patel",
+      "age": 60,
+      "gender": "F",
+      "time": "17:15 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 170,
+        "bpd": 90,
+        "spo2": 95,
+        "heartRate": 95,
+        "rr": 20
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "35",
+      "name": "Kabir Ahmed",
+      "age": 33,
+      "gender": "F",
+      "time": "17:30 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 174,
+        "bpd": 84,
+        "spo2": 97,
+        "heartRate": 108,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "36",
+      "name": "Lakshmi Iyer",
+      "age": 30,
+      "gender": "F",
+      "time": "17:45 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 132,
+        "bpd": 89,
+        "spo2": 95,
+        "heartRate": 110,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "37",
+      "name": "Dev Sharma",
+      "age": 33,
+      "gender": "M",
+      "time": "18:00 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 151,
+        "bpd": 87,
+        "spo2": 96,
+        "heartRate": 101,
+        "rr": 19
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "38",
+      "name": "Fatima Khan",
+      "age": 31,
+      "gender": "M",
+      "time": "18:15 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 144,
+        "bpd": 97,
+        "spo2": 99,
+        "heartRate": 82,
+        "rr": 19
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "39",
+      "name": "Rajesh Gupta",
+      "age": 50,
+      "gender": "F",
+      "time": "18:30 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 126,
+        "bpd": 81,
+        "spo2": 95,
+        "heartRate": 80,
+        "rr": 17
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "40",
+      "name": "Meera Krishnan",
+      "age": 64,
+      "gender": "M",
+      "time": "18:45 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 177,
+        "bpd": 85,
+        "spo2": 97,
+        "heartRate": 78,
+        "rr": 21
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "41",
+      "name": "Suresh Yadav",
+      "age": 64,
+      "gender": "M",
+      "time": "19:00 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 139,
+        "bpd": 96,
+        "spo2": 96,
+        "heartRate": 91,
+        "rr": 18
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "42",
+      "name": "Kavita Rao",
+      "age": 24,
+      "gender": "M",
+      "time": "19:15 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 152,
+        "bpd": 86,
+        "spo2": 95,
+        "heartRate": 99,
+        "rr": 17
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "43",
+      "name": "Ishaan Mehta",
+      "age": 47,
+      "gender": "M",
+      "time": "19:30 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 132,
+        "bpd": 97,
+        "spo2": 95,
+        "heartRate": 116,
+        "rr": 22
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "44",
+      "name": "Anand Prakash",
+      "age": 23,
+      "gender": "F",
+      "time": "19:45 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 121,
+        "bpd": 99,
+        "spo2": 99,
+        "heartRate": 76,
+        "rr": 17
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "45",
+      "name": "Deepika Chawla",
+      "age": 44,
+      "gender": "F",
+      "time": "20:00 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 152,
+        "bpd": 95,
+        "spo2": 99,
+        "heartRate": 72,
+        "rr": 17
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "46",
+      "name": "Nitin Bansal",
+      "age": 27,
+      "gender": "F",
+      "time": "20:15 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 172,
+        "bpd": 99,
+        "spo2": 98,
+        "heartRate": 99,
+        "rr": 23
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "47",
+      "name": "Ritu Malhotra",
+      "age": 32,
+      "gender": "M",
+      "time": "20:30 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 147,
+        "bpd": 90,
+        "spo2": 95,
+        "heartRate": 101,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "48",
+      "name": "Pradeep Kumar",
+      "age": 58,
+      "gender": "F",
+      "time": "20:45 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 162,
+        "bpd": 89,
+        "spo2": 99,
+        "heartRate": 106,
+        "rr": 19
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "49",
+      "name": "Shreya Ghosh",
+      "age": 21,
+      "gender": "M",
+      "time": "21:00 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 171,
+        "bpd": 85,
+        "spo2": 95,
+        "heartRate": 74,
+        "rr": 23
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "50",
+      "name": "Vivek Sinha",
+      "age": 45,
+      "gender": "F",
+      "time": "21:15 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 176,
+        "bpd": 99,
+        "spo2": 97,
+        "heartRate": 83,
+        "rr": 16
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "51",
+      "name": "Aarav Malhotra",
+      "age": 31,
+      "gender": "F",
+      "time": "21:30 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "Stable",
+      "status": "Done",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 128,
+        "bpd": 80,
+        "spo2": 96,
+        "heartRate": 116,
+        "rr": 20
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "52",
+      "name": "Baby Kyra Singh",
+      "age": 48,
+      "gender": "M",
+      "time": "21:45 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Critical",
+      "status": "Waiting",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 184,
+        "bpd": 99,
+        "spo2": 95,
+        "heartRate": 112,
+        "rr": 21
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "53",
+      "name": "Zoya Sheikh",
+      "age": 58,
+      "gender": "F",
+      "time": "22:00 PM",
+      "reasonForVisit": "Initial Consultation",
+      "riskLevel": "High",
+      "status": "In Progress",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 167,
+        "bpd": 86,
+        "spo2": 99,
+        "heartRate": 99,
+        "rr": 22
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    },
+    {
+      "id": "54",
+      "name": "Rohan Verma",
+      "age": 41,
+      "gender": "F",
+      "time": "22:15 PM",
+      "reasonForVisit": "Follow-up",
+      "riskLevel": "Monitor",
+      "status": "Completed",
+      "redFlags": [
+        "Red flag 1",
+        "Red flag 2"
+      ],
+      "careGaps": [
+        "Gap 1"
+      ],
+      "medDeltas": [
+        "Delta 1"
+      ],
+      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "medications": {
+        "current": [
+          "Med 1"
+        ],
+        "new": [
+          "Med 2"
+        ]
+      },
+      "vitals": {
+        "temp": 98.6,
+        "bps": 157,
+        "bpd": 87,
+        "spo2": 96,
+        "heartRate": 126,
+        "rr": 18
+      },
+      "symptoms": [
+        "fever",
+        "cough"
+      ]
+    }
+  ]
+}

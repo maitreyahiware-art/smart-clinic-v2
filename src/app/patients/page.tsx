@@ -128,7 +128,7 @@ export default function PatientsRegistryPage() {
                     {/* Table Header */}
                     <div style={{
                         display: 'grid',
-                        gridTemplateColumns: '80px 200px 1fr 150px 120px 120px',
+                        gridTemplateColumns: '80px 250px 1fr 200px 180px 120px 100px',
                         gap: '16px',
                         padding: '16px 20px',
                         background: 'var(--color-bg-primary)',
@@ -141,8 +141,9 @@ export default function PatientsRegistryPage() {
                     }}>
                         <div>Time</div>
                         <div>Patient</div>
-                        <div>Reason for Visit</div>
-                        <div>Risk Level</div>
+                        <div>Dawai (Medicines)</div>
+                        <div>Diagnostics</div>
+                        <div>BN Smart Life Health Score</div>
                         <div>Status</div>
                         <div>Action</div>
                     </div>
@@ -153,12 +154,23 @@ export default function PatientsRegistryPage() {
                             const riskColors = getRiskColor(patient.riskLevel);
                             const statusColors = getStatusColor(patient.status);
 
+                            // Deterministic Health Score
+                            const getHealthScore = (level: string, id: string) => {
+                                const seed = parseInt(id) || 42;
+                                if (level === 'Critical') return 20 + (seed % 15);
+                                if (level === 'High') return 45 + (seed % 15);
+                                if (level === 'Monitor') return 65 + (seed % 15);
+                                return 85 + (seed % 10);
+                            };
+
+                            const score = getHealthScore(patient.riskLevel, patient.id);
+
                             return (
                                 <div
                                     key={patient.id}
                                     style={{
                                         display: 'grid',
-                                        gridTemplateColumns: '80px 200px 1fr 150px 120px 120px',
+                                        gridTemplateColumns: '80px 250px 1fr 200px 180px 120px 100px',
                                         gap: '16px',
                                         padding: '16px 20px',
                                         borderBottom: '1px solid #E5E7EB',
@@ -179,29 +191,89 @@ export default function PatientsRegistryPage() {
 
                                     {/* Patient */}
                                     <div>
-                                        <div style={{ fontWeight: 600, marginBottom: '2px' }}>
+                                        <div style={{ fontWeight: 600, marginBottom: '2px', fontSize: '1rem' }}>
                                             {patient.name}
                                         </div>
-                                        <div style={{ fontSize: '0.8rem', color: '#666' }}>
+                                        <div style={{ fontSize: '0.8rem', color: '#666', marginBottom: '4px' }}>
                                             {patient.age}y, {patient.gender}
+                                        </div>
+                                        <div style={{
+                                            fontSize: '0.85rem',
+                                            color: 'var(--color-brand-secondary)',
+                                            fontWeight: 500,
+                                            lineHeight: '1.2'
+                                        }}>
+                                            {patient.reasonForVisit}
                                         </div>
                                     </div>
 
-                                    {/* Reason */}
-                                    <div style={{ fontSize: '0.9rem', color: '#666' }}>
-                                        {patient.reasonForVisit}
+                                    {/* Dawai (Medicines) */}
+                                    <div style={{ fontSize: '0.9rem', color: '#444' }}>
+                                        {patient.medications?.current && patient.medications.current.length > 0 ? (
+                                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                                                {patient.medications.current.map((med, i) => (
+                                                    <span key={i} style={{
+                                                        background: '#F3F4F6',
+                                                        padding: '2px 8px',
+                                                        borderRadius: '4px',
+                                                        fontSize: '0.8rem',
+                                                        border: '1px solid #E5E7EB'
+                                                    }}>
+                                                        {med}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <span style={{ color: '#999', fontStyle: 'italic' }}>None prescribed</span>
+                                        )}
                                     </div>
 
-                                    {/* Risk Level */}
-                                    <div>
+                                    {/* Diagnosis */}
+                                    <div style={{ fontSize: '0.9rem', color: '#444' }}>
+                                        {patient.symptoms && patient.symptoms.length > 0 ? (
+                                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                                                {patient.symptoms.map((symptom, i) => (
+                                                    <span key={i} style={{
+                                                        background: 'rgba(0, 182, 193, 0.1)',
+                                                        color: '#008B9A',
+                                                        padding: '2px 10px',
+                                                        borderRadius: '6px',
+                                                        fontSize: '0.75rem',
+                                                        fontWeight: 700,
+                                                        textTransform: 'capitalize',
+                                                        border: '1px solid rgba(0, 182, 193, 0.2)'
+                                                    }}>
+                                                        {symptom}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <span style={{ color: '#999', fontStyle: 'italic' }}>Pending Evaluation</span>
+                                        )}
+                                    </div>
+
+                                    {/* Health Score */}
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                            <span style={{
+                                                fontSize: '1.1rem',
+                                                fontWeight: 800,
+                                                color: riskColors.text
+                                            }}>
+                                                {score}
+                                            </span>
+                                            <span style={{ fontSize: '0.8rem', color: '#999', fontWeight: 500 }}>/ 100</span>
+                                        </div>
                                         <span style={{
                                             display: 'inline-block',
-                                            padding: '4px 12px',
+                                            padding: '2px 10px',
                                             background: riskColors.bg,
                                             color: riskColors.text,
-                                            borderRadius: '12px',
-                                            fontSize: '0.75rem',
-                                            fontWeight: 600
+                                            borderRadius: '6px',
+                                            fontSize: '0.7rem',
+                                            fontWeight: 700,
+                                            width: 'fit-content',
+                                            textTransform: 'uppercase'
                                         }}>
                                             {patient.riskLevel}
                                         </span>
@@ -227,15 +299,17 @@ export default function PatientsRegistryPage() {
                                         <Link
                                             href={`/patient/${patient.id}`}
                                             style={{
-                                                padding: '6px 12px',
+                                                padding: '8px 16px',
                                                 background: 'var(--color-brand-primary)',
                                                 color: 'white',
-                                                borderRadius: '6px',
-                                                fontSize: '0.8rem',
-                                                fontWeight: 500,
+                                                borderRadius: '8px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: 600,
                                                 textDecoration: 'none',
                                                 display: 'inline-block',
-                                                transition: 'all 0.2s'
+                                                transition: 'all 0.2s',
+                                                textAlign: 'center',
+                                                width: '100%'
                                             }}
                                             onMouseOver={(e) => {
                                                 e.currentTarget.style.background = '#008B9A';

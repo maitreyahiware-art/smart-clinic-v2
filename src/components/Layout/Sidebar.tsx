@@ -6,6 +6,9 @@ import styles from './Layout.module.css';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { patients } from '@/data/patients';
+import { useSpecialty } from '@/context/SpecialtyContext';
+import { SPECIALTIES } from '@/data/specialties';
+import { SpecialtyConfig } from '@/types/specialty';
 
 interface SidebarProps {
     collapsed: boolean;
@@ -14,10 +17,21 @@ interface SidebarProps {
 
 export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
     const pathname = usePathname();
+    const { specialty, setSpecialtyId } = useSpecialty();
     const [showPatientSelector, setShowPatientSelector] = useState(false);
     const [patientSearch, setPatientSearch] = useState('');
+    const [patientList, setPatientList] = useState<any[]>([]);
 
-    const filteredPatients = patients.filter(p =>
+    React.useEffect(() => {
+        const fetchPatients = async () => {
+            const res = await fetch('/api/patients');
+            const data = await res.json();
+            setPatientList(data);
+        };
+        fetchPatients();
+    }, [showPatientSelector]);
+
+    const filteredPatients = patientList.filter(p =>
         p.name.toLowerCase().includes(patientSearch.toLowerCase()) ||
         p.reasonForVisit.toLowerCase().includes(patientSearch.toLowerCase())
     );
@@ -64,7 +78,7 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
                             style={{
                                 width: '100%',
                                 padding: '12px 16px',
-                                background: 'linear-gradient(135deg, #00B6C1 0%, #008B9A 100%)',
+                                background: specialty ? `linear-gradient(135deg, ${specialty.dashboardAccent.primary} 0%, #008B9A 100%)` : 'linear-gradient(135deg, #00B6C1 0%, #008B9A 100%)',
                                 color: 'white',
                                 borderRadius: '12px',
                                 display: 'flex',
@@ -116,14 +130,16 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
                             <span>{item.name}</span>
                         </Link>
                     ))}
+
+                    <div className={styles.divider} />
                 </nav>
 
                 <div className={styles.footer}>
                     <div className={styles.userProfile}>
-                        <div className={styles.avatar}>DR</div>
+                        <div className={styles.avatar} style={{ background: specialty?.dashboardAccent.primary || '#00B6C1' }}>MD</div>
                         <div className={styles.userInfo}>
-                            <p className={styles.userName}>Dr. S. Mehta</p>
-                            <p className={styles.userRole}>Family Medicine</p>
+                            <p className={styles.userName}>Medical Director</p>
+                            <p className={styles.userRole}>Cardiology</p>
                         </div>
                     </div>
                 </div>

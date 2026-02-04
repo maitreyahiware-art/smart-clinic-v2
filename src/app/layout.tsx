@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Lora, Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/context/ThemeContext';
+import { SpecialtyProvider } from '@/context/SpecialtyContext';
 
 const lora = Lora({
   subsets: ['latin'],
@@ -29,7 +30,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${lora.variable} ${inter.variable}`}>
         <ThemeProvider>
-          {children}
+          <SpecialtyProvider>
+            {children}
+          </SpecialtyProvider>
         </ThemeProvider>
       </body>
     </html>
