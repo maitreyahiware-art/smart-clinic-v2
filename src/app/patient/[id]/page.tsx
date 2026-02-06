@@ -258,90 +258,165 @@ export default function PatientPage(props: { params: Promise<{ id: string }> | {
 
                     {/* BN Health Score (Metabolic Scale) Tab */}
                     {activeTab === 'bnhealthscore' && (
-                        <div style={{ animation: 'fadeIn 0.3s ease', background: 'white', borderRadius: '32px', padding: '40px', border: '1px solid var(--color-border)', boxShadow: '0 10px 25px rgba(0, 182, 193, 0.05)' }}>
-                            {/* Inner Metabolic UI */}
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-                                {/* Metabolic Scale Header Toggles */}
-                                <div style={{ display: 'flex', justifyContent: 'center', gap: '1px', background: '#f1f5f9', padding: '4px', borderRadius: '16px', width: 'fit-content', margin: '0 auto', border: '1px solid #e2e8f0' }}>
-                                    {['HISTORICAL REGISTRY', 'METABOLIC SCALE', 'FINANCIAL RECORDS'].map((t, idx) => (
-                                        <button key={t} style={{
-                                            padding: '12px 24px', borderRadius: '14px', border: 'none',
-                                            background: t === 'METABOLIC SCALE' ? 'white' : 'transparent',
-                                            color: t === 'METABOLIC SCALE' ? '#0D9488' : '#64748b',
-                                            fontWeight: 800, fontSize: '0.8rem', letterSpacing: '0.05em',
-                                            boxShadow: t === 'METABOLIC SCALE' ? '0 4px 12px rgba(0,0,0,0.05)' : 'none',
-                                            cursor: 'pointer'
-                                        }}>
-                                            {t === 'METABOLIC SCALE' && <span style={{ marginRight: '8px' }}>⚖️</span>}
-                                            {t}
-                                        </button>
-                                    ))}
+                        <div style={{ animation: 'fadeIn 0.3s ease', display: 'flex', flexDirection: 'column', gap: '40px' }}>
+
+                            {/* Metabolic Scale Header Toggles */}
+                            <div style={{ display: 'flex', justifyContent: 'center', gap: '1px', background: '#f1f5f9', padding: '4px', borderRadius: '16px', width: 'fit-content', margin: '0 auto', border: '1px solid #e2e8f0' }}>
+                                {['HISTORICAL REGISTRY', 'METABOLIC SCALE', 'FINANCIAL RECORDS'].map((t, idx) => (
+                                    <button key={t} style={{
+                                        padding: '12px 24px', borderRadius: '14px', border: 'none',
+                                        background: t === 'METABOLIC SCALE' ? 'white' : 'transparent',
+                                        color: t === 'METABOLIC SCALE' ? '#00B6C1' : '#64748b',
+                                        fontWeight: 800, fontSize: '0.8rem', letterSpacing: '0.05em',
+                                        boxShadow: t === 'METABOLIC SCALE' ? '0 4px 12px rgba(0,0,0,0.05)' : 'none',
+                                        cursor: 'pointer'
+                                    }}>
+                                        {t === 'METABOLIC SCALE' && <span style={{ marginRight: '8px' }}>⚖️</span>}
+                                        {t}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Main Stats Display (Circle & Pills) */}
+                            <div style={{
+                                background: '#f8fafc', borderRadius: '40px', padding: '60px 40px',
+                                display: 'flex', justifyContent: 'space-around', alignItems: 'center',
+                                border: '1px solid #e2e8f0', position: 'relative', overflow: 'hidden'
+                            }}>
+                                {/* Weight Circle */}
+                                <div style={{ position: 'relative', width: '220px', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <svg width="220" height="220" viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="45" fill="none" stroke="#e2e8f0" strokeWidth="6" />
+                                        <circle cx="50" cy="50" r="45" fill="none" stroke="#00B6C1" strokeWidth="6" strokeDasharray="210 282" strokeLinecap="round" transform="rotate(-90 50 50)" />
+                                    </svg>
+                                    <div style={{ position: 'absolute', textAlign: 'center' }}>
+                                        <div style={{ fontSize: '3rem', fontWeight: 900, color: '#1e293b', lineHeight: 1 }}>86.0</div>
+                                        <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#64748b', marginTop: '4px', opacity: 0.6 }}>WEIGHT (KG)</div>
+                                    </div>
                                 </div>
 
-                                {/* Main Stats Display */}
-                                <div style={{
-                                    background: '#f8fafc', borderRadius: '40px', padding: '60px 40px',
-                                    display: 'flex', justifyContent: 'space-around', alignItems: 'center',
-                                    border: '1px solid #e2e8f0', position: 'relative', overflow: 'hidden'
-                                }}>
-                                    {/* Weight Circle */}
-                                    <div style={{ position: 'relative', width: '220px', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <svg width="220" height="220" viewBox="0 0 100 100">
-                                            <circle cx="50" cy="50" r="45" fill="none" stroke="#e2e8f0" strokeWidth="6" />
-                                            <circle cx="50" cy="50" r="45" fill="none" stroke="#0D9488" strokeWidth="6" strokeDasharray="210 282" strokeLinecap="round" transform="rotate(-90 50 50)" />
-                                        </svg>
-                                        <div style={{ position: 'absolute', textAlign: 'center' }}>
-                                            <div style={{ fontSize: '3rem', fontWeight: 900, color: '#1e293b', lineHeight: 1 }}>69.16</div>
-                                            <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#64748b', marginTop: '4px', opacity: 0.6 }}>WEIGHT (KG)</div>
-                                        </div>
+                                {/* Middle Pill Details */}
+                                <div style={{ display: 'flex', gap: '16px' }}>
+                                    <div style={{ background: 'white', padding: '24px 20px', borderRadius: '50px', width: '110px', textAlign: 'center', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px rgba(0,0,0,0.02)' }}>
+                                        <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.1em', marginBottom: '8px' }}>IDEAL<br />WEIGHT</div>
+                                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#334155' }}>49.0</div>
+                                        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#64748b', opacity: 0.8 }}>kg</div>
                                     </div>
 
-                                    {/* Middle Pill Details */}
-                                    <div style={{ display: 'flex', gap: '16px' }}>
-                                        <div style={{ background: 'white', padding: '24px 20px', borderRadius: '50px', width: '110px', textAlign: 'center', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px rgba(0,0,0,0.02)' }}>
-                                            <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.1em', marginBottom: '8px' }}>IDEAL<br />STATUS</div>
-                                            <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#334155' }}>69.3</div>
-                                            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#64748b', opacity: 0.8 }}>kg</div>
-                                        </div>
-
-                                        <div style={{ background: 'white', padding: '24px 20px', borderRadius: '50px', width: '110px', textAlign: 'center', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px rgba(0,0,0,0.02)' }}>
-                                            <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.1em', marginBottom: '8px' }}>BMI<br />SCORE</div>
-                                            <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#334155' }}>12.3</div>
-                                            <span style={{ fontSize: '0.65rem', fontWeight: 800, background: '#D1FAE5', color: '#065F46', padding: '4px 10px', borderRadius: '6px', marginTop: '8px', display: 'inline-block' }}>NORMAL</span>
-                                        </div>
+                                    <div style={{ background: 'white', padding: '24px 20px', borderRadius: '50px', width: '110px', textAlign: 'center', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px rgba(0,0,0,0.02)' }}>
+                                        <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.1em', marginBottom: '8px' }}>BMI<br />SCORE</div>
+                                        <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#334155' }}>37.0</div>
+                                        <span style={{ fontSize: '0.65rem', fontWeight: 800, background: '#FEE2E2', color: '#991B1B', padding: '4px 10px', borderRadius: '6px', marginTop: '8px', display: 'inline-block' }}>OBESE</span>
                                     </div>
+                                </div>
 
-                                    {/* Verdict Pill */}
-                                    <div style={{ background: 'white', padding: '32px 32px', borderRadius: '60px', textAlign: 'center', border: '1px solid #e2e8f0', boxShadow: '0 10px 30px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
-                                        <div style={{ background: '#f0fdfa', padding: '12px', borderRadius: '20px', color: '#00B6C1' }}>
-                                            <Activity size={32} />
+                                {/* Verdict Pill */}
+                                <div style={{ background: 'white', padding: '32px 32px', borderRadius: '60px', textAlign: 'center', border: '1px solid #e2e8f0', boxShadow: '0 10px 30px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+                                    <div style={{ background: '#f0fdfa', padding: '12px', borderRadius: '20px', color: '#00B6C1' }}>
+                                        <Brain size={32} />
+                                    </div>
+                                    <div>
+                                        <div style={{ fontSize: '2rem', fontWeight: 900, color: '#134e4a' }}>38</div>
+                                        <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.2em', marginTop: '4px' }}>HEALTH SCORE</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Bottom Grid of Metrics */}
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '16px' }}>
+                                {[
+                                    { label: 'BODY FAT', value: '32.8 %', icon: '⚡', color: '#0ea5e9' },
+                                    { label: 'BODY WATER', value: '45 L', icon: '💧', color: '#3b82f6' },
+                                    { label: 'BONE MASS', value: '2.5 kg', icon: '⚛️', color: '#8b5cf6' },
+                                    { label: 'BMR', value: '1671 Kcal', icon: '🔥', color: '#f59e0b' },
+                                    { label: 'VISCERAL FAT', value: '14', icon: '💓', color: '#ef4444' },
+                                    { label: 'METABOLIC AGE', value: '52', icon: '⏱️', color: '#a855f7' }
+                                ].map((stat, i) => (
+                                    <div key={i} style={{
+                                        background: 'white', border: '1px solid #e2e8f0', borderRadius: '24px', padding: '20px', textAlign: 'center',
+                                        display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center'
+                                    }}>
+                                        <div style={{ fontSize: '1.5rem', marginBottom: '4px' }}>{stat.icon}</div>
+                                        <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#1e293b' }}>{stat.value}</div>
+                                        <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.05em' }}>{stat.label}</div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                {/* ⚖️ Weight Marker Card */}
+                                <div style={{ background: 'white', borderRadius: '24px', padding: '32px', border: '1px solid var(--color-border)', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                                    <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                                        <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-brand-secondary)', textTransform: 'uppercase', letterSpacing: '0.1em', borderBottom: '2px solid #E2E8F0', display: 'inline-block', paddingBottom: '8px' }}>Weight Marker</h3>
+                                    </div>
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '20px', textAlign: 'center' }}>
+                                        {[
+                                            { label: 'Height:', value: '5 feet' },
+                                            { label: 'Weight:', value: `86 kg` },
+                                            { label: 'Age:', value: `${patient.age} yr` },
+                                            { label: 'Health Score:', value: '38', color: '#EF4444' },
+                                            { label: 'Ibw:', value: '49 kg' },
+                                            { label: 'Bmi:', value: '37 kg/m²', color: '#EF4444' }
+                                        ].map((m, i) => (
+                                            <div key={i}>
+                                                <div style={{ fontSize: '1.1rem', fontWeight: 800, color: m.color || '#1e293b', marginBottom: '4px' }}>{m.label}</div>
+                                                <div style={{ fontSize: '1.1rem', fontWeight: 600, color: m.color || '#475569' }}>{m.value}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* 🧘 Lifestyle Marker Card */}
+                                <div style={{ background: 'white', borderRadius: '24px', padding: '32px', border: '1px solid var(--color-border)', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                                    <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                                        <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-brand-secondary)', textTransform: 'uppercase', letterSpacing: '0.1em', borderBottom: '2px solid #E2E8F0', display: 'inline-block', paddingBottom: '8px' }}>Lifestyle Marker</h3>
+                                    </div>
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '40px 20px', textAlign: 'center' }}>
+                                        <div>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1e293b', marginBottom: '4px' }}>Sleep Duration:</div>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#475569' }}>Less than 6 hrs Peaceful</div>
                                         </div>
                                         <div>
-                                            <div style={{ fontSize: '2rem', fontWeight: 900, color: '#134e4a' }}>Normal</div>
-                                            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.2em', marginTop: '4px' }}>SCALE VERDICT</div>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1e293b', marginBottom: '4px' }}>Daily Activity Level:</div>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#475569' }}>Moderately Active</div>
+                                        </div>
+                                        <div>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1e293b', marginBottom: '4px' }}>Smoking/Vaping/Hookah:</div>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#475569' }}>Never</div>
+                                        </div>
+                                        <div>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1e293b', marginBottom: '4px' }}>Alcohol Consumption:</div>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#475569' }}>Never</div>
+                                        </div>
+                                        <div style={{ gridColumn: 'span 2' }}>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1e293b', marginBottom: '4px' }}>Water Intake:</div>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#475569' }}>About 6 - 12 glasses</div>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Bottom Grid of Metrics */}
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '16px' }}>
-                                    {[
-                                        { label: 'BODY FAT', value: '4.8 %', icon: '⚡', color: '#0ea5e9' },
-                                        { label: 'BODY WATER', value: '70 L', icon: '💧', color: '#3b82f6' },
-                                        { label: 'BONE MASS', value: '2.5 kg', icon: '⚛️', color: '#8b5cf6' },
-                                        { label: 'BMR', value: '1271 Kcal', icon: '🔥', color: '#f59e0b' },
-                                        { label: 'VISCERAL FAT', value: '1', icon: '💓', color: '#ef4444' },
-                                        { label: 'METABOLIC AGE', value: '18', icon: '⏱️', color: '#a855f7' }
-                                    ].map((stat, i) => (
-                                        <div key={i} style={{
-                                            background: 'white', border: '1px solid #e2e8f0', borderRadius: '24px', padding: '20px', textAlign: 'center',
-                                            display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center'
-                                        }}>
-                                            <div style={{ fontSize: '1.5rem', marginBottom: '4px' }}>{stat.icon}</div>
-                                            <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#1e293b' }}>{stat.value}</div>
-                                            <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.05em' }}>{stat.label}</div>
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '24px' }}>
+                                    {/* 🍎 Diet Marker Card */}
+                                    <div style={{ background: 'white', borderRadius: '24px', padding: '32px', border: '1px solid var(--color-border)', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                                        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                                            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-brand-secondary)', textTransform: 'uppercase', letterSpacing: '0.1em', borderBottom: '2px solid #E2E8F0', display: 'inline-block', paddingBottom: '8px' }}>Diet Marker</h3>
                                         </div>
-                                    ))}
+                                        <div style={{ textAlign: 'center' }}>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1e293b', marginBottom: '4px' }}>Fruit & Vegetable Intake:</div>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#475569' }}>About 1 - 2 servings</div>
+                                        </div>
+                                    </div>
+
+                                    {/* 🏥 Health Marker Card */}
+                                    <div style={{ background: 'white', borderRadius: '24px', padding: '32px', border: '1px solid var(--color-border)', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                                        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                                            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-brand-secondary)', textTransform: 'uppercase', letterSpacing: '0.1em', borderBottom: '2px solid #E2E8F0', display: 'inline-block', paddingBottom: '8px' }}>Health Marker</h3>
+                                        </div>
+                                        <div style={{ textAlign: 'center' }}>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1e293b', marginBottom: '4px' }}>Medical Conditions:</div>
+                                            <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#475569' }}>Low Immunity, Body Ache, Acidity</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

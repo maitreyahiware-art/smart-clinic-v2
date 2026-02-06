@@ -19,13 +19,15 @@
       "medDeltas": [
         "Delta 1"
       ],
-      "intakeSummary": "Patient reports routine checkup. No acute distress observed.",
+      "intakeSummary": "Chest Pain (PQRST):\nDyspnea (NYHA Class I-IV):\nSyncope/Presyncope:\n\nREASON: Initial Consultation\nINTAKE: Patient reports routine checkup. No acute distress observed.",
       "medications": {
         "current": [
           "Med 1"
         ],
         "new": [
-          "Med 2"
+          "Med 2",
+          "Metoprolol 25mg",
+          "Atorvastatin 40mg"
         ]
       },
       "vitals": {
@@ -39,7 +41,8 @@
       "symptoms": [
         "fever",
         "cough"
-      ]
+      ],
+      "clinicalNote": "PRESENTING COMPLAINT: Initial Consultation\n\nCLINICAL OBSERVATIONS:\nChest Pain (PQRST):\nDyspnea (NYHA Class I-IV):\nSyncope/Presyncope:\n\nREASON: Initial Consultation\nINTAKE: Patient reports routine checkup. No acute distress observed.\n\nCARDIAC ASSESSMENT:\nBP: 154/86 mmHg | HR: 79 bpm | SpO2: 95%\n\nDIRECTIVES & IMPRESSION:\nStable cardiac hemodynamic profile.\n\nADDED DAWAI: Atorvastatin 40mg"
     },
     {
       "id": "2",
