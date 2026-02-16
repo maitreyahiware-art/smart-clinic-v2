@@ -1,0 +1,429 @@
+Got it — this is a solid MD already. I’ll **extend Phase 4 (Specialty-Specific Intelligence)** in a way that is **implementation-ready** for your coding agent, not fluffy product talk.
+
+I’ll:
+
+* Add **more specialties**
+* Define **clear triggers, metrics, and UI implications**
+* Keep it consistent with your existing `SpecialtyConfig` pattern
+* Avoid tech drift (still Next.js + TS + CSS Modules)
+
+---
+
+## Phase 4 (Extended): Specialty-Specific Intelligence Engine
+
+### Core Pattern (unchanged, but clarified)
+
+Each specialty should implement a `SpecialtyConfig` object:
+
+```ts
+export interface SpecialtyConfig {
+  id: string;
+  label: string;
+  riskTriggers: RiskTrigger[];
+  contextLensSections: ContextSection[];
+  soapTemplate: SoapTemplate;
+  dashboardAccent: {
+    primary: string;
+    subtle: string;
+  };
+  orderingShortcuts: OrderingPreset[];
+}
+```
+
+---
+
+## 🆕 Additional Specialties to Implement
+
+---
+
+## 1. General Medicine (Baseline / Default)
+
+**Why:**
+This becomes the *fallback* specialty and onboarding default for most clinics.
+
+### Focus Areas
+
+* Undifferentiated symptoms
+* Early danger detection
+* Chronic disease monitoring
+
+### Key Risk Triggers
+
+* Fever > 101°F for >3 days
+* Weight loss >5% in 1 month
+* Persistent pain >14 days
+* Oxygen saturation <94%
+* Polypharmacy (>5 meds)
+
+### Context Lens
+
+**Safety**
+
+* Fever duration
+* Oxygen status
+* Red flag symptoms (night sweats, bleeding)
+
+**Gaps**
+
+* Pending labs
+* Missed follow-ups
+* Preventive screenings overdue
+
+### SOAP Auto-Fields
+
+* General Appearance
+* Vitals Summary
+* System-wise ROS checklist
+* Provisional Dx + DDx
+
+### Dashboard Accent
+
+* Neutral Teal / Slate
+
+---
+
+## 2. Pediatrics
+
+**Why:**
+Completely different risk logic; age-based triage is critical.
+
+### Focus Areas
+
+* Growth & development
+* Infection severity
+* Parental red flags
+
+### Key Risk Triggers
+
+* Age <2 months + fever
+* Poor feeding
+* Lethargy / irritability
+* Delayed milestones
+* Respiratory rate above age-specific norm
+
+### Context Lens
+
+**Safety**
+
+* Age-adjusted vitals
+* Dehydration signs
+* Immunization status
+
+**Deltas**
+
+* Growth percentile change
+* Weight-for-age drop
+
+### SOAP Auto-Fields
+
+* Birth history
+* Growth chart snapshot
+* Developmental milestones
+* Vaccination review
+
+### Ordering Shortcuts
+
+* CBC
+* CRP
+* Urine routine
+* Chest X-ray (peds preset)
+
+### Dashboard Accent
+
+* Soft Blue / Mint
+
+---
+
+## 3. Orthopedics
+
+**Why:**
+Overlaps with Physio but focuses on **structural damage + surgical decisioning**.
+
+### Focus Areas
+
+* Trauma
+* Structural deformities
+* Neurovascular compromise
+
+### Key Risk Triggers
+
+* Suspected fracture
+* Loss of sensation
+* Loss of distal pulses
+* Severe deformity
+* Inability to bear weight
+
+### Context Lens
+
+**Safety**
+
+* Neurovascular status
+* Open vs closed injury
+
+**Deltas**
+
+* Pain progression
+* Mobility loss
+
+### SOAP Auto-Fields
+
+* Mechanism of injury
+* Site-specific exam
+* Neurovascular exam
+* ROM (active/passive)
+
+### Ordering Shortcuts
+
+* X-Ray (site specific)
+* MRI (joint/spine)
+* Immobilization order
+
+### Dashboard Accent
+
+* Steel Grey / Blue
+
+---
+
+## 4. Gynecology
+
+**Why:**
+Time-sensitive red flags + lifecycle-based context.
+
+### Focus Areas
+
+* Menstrual health
+* Pregnancy risk
+* Hormonal patterns
+
+### Key Risk Triggers
+
+* Heavy bleeding
+* Amenorrhea >3 months
+* Severe pelvic pain
+* Positive pregnancy + pain
+* Postmenopausal bleeding
+
+### Context Lens
+
+**Safety**
+
+* Pregnancy status
+* Bleeding severity
+
+**Gaps**
+
+* Pap smear overdue
+* Ultrasound pending
+
+### SOAP Auto-Fields
+
+* LMP
+* Menstrual regularity
+* Obstetric history
+* Pelvic exam notes
+
+### Ordering Shortcuts
+
+* Urine pregnancy test
+* Pelvic ultrasound
+* Hormonal panel
+
+### Dashboard Accent
+
+* Rose / Plum
+
+---
+
+## 5. Psychiatry / Mental Health
+
+**Why:**
+This is where “Operational Nervous System” really differentiates.
+
+### Focus Areas
+
+* Risk stratification
+* Functional impairment
+* Medication adherence
+
+### Key Risk Triggers
+
+* Suicidal ideation
+* Severe insomnia
+* Medication non-compliance
+* Acute agitation
+* Substance misuse indicators
+
+### Context Lens
+
+**Safety**
+
+* Self-harm risk
+* Support system
+
+**Deltas**
+
+* Mood change vs last visit
+* PHQ-9 / GAD-7 trend
+
+### SOAP Auto-Fields
+
+* Mental Status Exam (structured)
+* Screening scores
+* Psychosocial stressors
+
+### Ordering Shortcuts
+
+* Psychometric scales
+* Referral / admission flags
+
+### Dashboard Accent
+
+* Indigo / Calm Violet
+
+---
+
+## 6. Pulmonology
+
+**Why:**
+Vital-driven specialty → perfect for signal amplification.
+
+### Focus Areas
+
+* Breathlessness
+* Chronic lung disease
+* Infection escalation
+
+### Key Risk Triggers
+
+* SpO₂ <92%
+* Rapid RR
+* Hemoptysis
+* Night-time symptoms
+* Frequent exacerbations
+
+### Context Lens
+
+**Safety**
+
+* Oxygen trend
+* Peak flow
+
+**Deltas**
+
+* Symptom escalation
+* Inhaler use frequency
+
+### SOAP Auto-Fields
+
+* Smoking history
+* Lung auscultation
+* Peak flow value
+
+### Ordering Shortcuts
+
+* Chest X-ray
+* PFT
+* ABG
+
+### Dashboard Accent
+
+* Sky Blue / Grey
+
+---
+
+## 7. Gastroenterology
+
+**Why:**
+Symptom pattern recognition + red flag bleeding.
+
+### Focus Areas
+
+* Pain patterns
+* GI bleeding
+* Chronic inflammation
+
+### Key Risk Triggers
+
+* GI bleed
+* Persistent vomiting
+* Weight loss
+* Dysphagia
+* Severe abdominal tenderness
+
+### Context Lens
+
+**Safety**
+
+* Bleeding risk
+* Dehydration
+
+**Gaps**
+
+* Endoscopy pending
+* Stool tests overdue
+
+### SOAP Auto-Fields
+
+* Pain character (site, radiation)
+* Bowel habit summary
+* Alarm features checklist
+
+### Ordering Shortcuts
+
+* LFT
+* Ultrasound abdomen
+* Endoscopy referral
+
+### Dashboard Accent
+
+* Olive / Earth Green
+
+---
+
+## 🔁 Implementation Notes for Your Coding Agent
+
+1. **SpecialtyConfig registry**
+
+```ts
+export const SPECIALTIES: Record<string, SpecialtyConfig> = {
+  general,
+  cardiology,
+  diabetes,
+  physiotherapy,
+  pediatrics,
+  orthopedics,
+  gynecology,
+  psychiatry,
+  pulmonology,
+  gastroenterology
+};
+```
+
+2. **ContextLens**
+
+* Should map over `contextLensSections[]`
+* No hardcoding of “Red Flags”
+
+3. **SOAP**
+
+* Template auto-loads based on `specialtyId`
+* Still editable (doctor control preserved)
+
+4. **Risk Stratification**
+
+* Severity = highest triggered rule
+* Used in:
+
+  * Agenda badges
+  * PatientCard emphasis
+  * ContextLens “Safety”
+
+---
+
+If you want, next I can:
+
+* Convert this into **actual TypeScript config files**
+* Help you **prioritize which specialties to ship first**
+* Or design **how doctors switch specialties without friction**
+
+This is already shaping into something most EMRs *pretend* to be.
